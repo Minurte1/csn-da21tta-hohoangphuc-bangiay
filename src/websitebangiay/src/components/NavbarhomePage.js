@@ -19,10 +19,10 @@ const MyNavbar = () => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/" id='nav-item'>Nam</NavLink>
+                            <NavLink href="/" id='nav-item'>Nữ</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/about" id='nav-item'>Nữ</NavLink>
+                            <NavLink href="/about" id='nav-item'>Nam</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="/contact" id='nav-item'>Trẻ em</NavLink>
