@@ -1,6 +1,29 @@
-img {
+.image-navbar {
     height: 70px;
     width: 70px;
+    margin-left: 40px;
+}
+
+#navbar {
+    top: 0;
+    left: 0;
+    z-index: 2;
+    position: fixed;
+}
+
+.ml-auto {
+    margin-left: 32%;
+}
+
+#nav-item {
+    z-index: 1;
+    margin-left: 20px;
+
+}
+
+#nav-item:hover {
+    filter: brightness(50%);
+    color: black;
 }
 
 .navbar {
@@ -12,10 +35,9 @@ img {
     /* Đổ bóng Navbar */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     /* Hiệu ứng chuyển động */
-    position: fixed;
+
     width: 100%;
-    top: 0;
-    z-index: 1000;
+    z-index: 6;
 }
 
 /* Navbar.css */

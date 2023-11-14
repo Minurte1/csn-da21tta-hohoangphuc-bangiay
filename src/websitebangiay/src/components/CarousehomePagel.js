@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/CarouselHomePage.css'
+
 import {
     Carousel,
     CarouselItem,
@@ -10,21 +11,21 @@ import {
 
 const items = [
     {
-        src: 'https://picsum.photos/id/123/1200/400',
-        altText: 'Slide 1',
-        caption: 'Slide 1',
+        src: require('../assets/images-shoes/carousel5.png'),
+        altText: 'Bước chân của bạn là câu chuyện, và chúng tôi cung cấp những cây giày để bạn viết nên hành trình đẹp nhất',
+        caption: 'ĐỒNG HÀNH',
         key: 1,
     },
     {
-        src: 'https://picsum.photos/id/456/1200/400',
-        altText: 'Slide 2',
-        caption: 'Slide 2',
+        src: require('../assets/images-shoes/carousel4.png'),
+        altText: 'Khám phá thế giới với đôi giày của chúng tôi - nơi nơi đẹp nhất bắt đầu từ bước chân của bạn.',
+        caption: 'KHÁM PHÁ',
         key: 2,
     },
     {
-        src: 'https://picsum.photos/id/678/1200/400',
-        altText: 'Slide 3',
-        caption: 'Slide 3',
+        src: require('../assets/images-shoes/carousel3.png'),
+        altText: 'Sứ mệnh của chúng tôi là làm cho mọi bước đi của bạn trở nên đặc biệt. Khám phá bộ sưu tập mới ngay hôm nay.',
+        caption: 'SỨ MỆNH',
         key: 3,
     },
 ];
@@ -59,7 +60,7 @@ function CarouselHomepage(args) {
             >
                 <img src={item.src} alt={item.altText} className='img' />
                 <CarouselCaption
-                    captionText={item.caption}
+                    captionText={item.altText}
                     captionHeader={item.caption}
                 />
             </CarouselItem>
