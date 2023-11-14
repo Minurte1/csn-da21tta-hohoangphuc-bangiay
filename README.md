@@ -38,3 +38,10 @@ src
 - Xây dựng cây thư mục theo mô hình mvc 
 - Tạo file Reactjs 
 - Tạo thanh Navbar website bán giày
+
+#Ngày 14.11.2023
+- Thiết kế giao diện website 
+- Điều chỉnh lại Navbar
+- Tạo listShoe ( Danh sách sản phẩm gìay)
+- Thiết kế lại Slide
+- Tạo nội dung sản phẩm
