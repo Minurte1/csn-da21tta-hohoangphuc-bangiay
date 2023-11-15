@@ -39,10 +39,17 @@ src
 - Tạo file Reactjs 
 - Tạo thanh Navbar website bán giày
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f34ac7a21b635851aacb3cae151aff7c0697803b
 #Ngày 14.11.2023
 - Thiết kế giao diện website 
 - Điều chỉnh lại Navbar
 - Tạo listShoe ( Danh sách sản phẩm gìay)
 - Thiết kế lại Slide
+<<<<<<< HEAD
 - Tạo nội dung sản phẩm
+=======
+- Tạo nội dung sản phẩm
+>>>>>>> f34ac7a21b635851aacb3cae151aff7c0697803b
