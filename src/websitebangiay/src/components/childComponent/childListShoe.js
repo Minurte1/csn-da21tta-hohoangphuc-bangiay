@@ -9,9 +9,11 @@ function ShoeList({ shoes }) {
             <ul>
                 {shoes.map((shoe) => (
                     <li key={shoe.id}>
-                        <img src={shoe.image} alt={shoe.name} />
-                        <h3>{shoe.name}</h3>
-                        <p>Price: ${shoe.price}</p>
+                        <a href={shoe.href} className='thea'>
+                            <img src={shoe.image} alt={shoe.name} />
+                            <h3>{shoe.name}</h3>
+                            <p>Price: ${shoe.price}</p>
+                        </a>
                     </li>
                 ))}
             </ul>

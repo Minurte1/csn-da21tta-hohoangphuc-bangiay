@@ -3,6 +3,13 @@
 .shoe-list {
     max-width: 1200px;
     margin: 0 auto;
+
+}
+
+.thea {
+    text-decoration: none;
+    z-index: 10;
+    color: black;
 }
 
 .shoe-list ul {
@@ -45,6 +52,7 @@
 
 .shoe-list li:hover img {
     transform: scale(1.1);
+    cursor: pointer;
     /* Phóng to hình ảnh khi hover */
 }
 

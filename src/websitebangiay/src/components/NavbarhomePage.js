@@ -1,8 +1,9 @@
-// Navbar.js
+// divbar.js
 import '../assets/styles/NavBar.css'
 import React, { useState } from 'react';
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
-import logoNavbar from '../assets/image-logo/logoNavbar.png';
+import LogoNavbar from '../assets/image-logo/logoNavbar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const MyNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,27 +14,21 @@ const MyNavbar = () => {
 
     return (
         <div className='navbar' id='navbar'>
-            <Navbar color="light" light expand="md">
-                <NavbarBrand href="logoNavBar"> <img src={logoNavbar} alt="Logo" className='image-navbar' /></NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/" id='nav-item'>Nữ</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/about" id='nav-item'>Nam</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/contact" id='nav-item'>Trẻ em</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/contact" id='nav-item'>Tất Cả</NavLink>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
-            </Navbar>
-        </div >
+            <div color="light" light expand="md" className='nav'>
+                <div isOpen={isOpen} className='isOpen'>
+                    <img src={LogoNavbar} alt="Logo" className='image-navbar' />
+                    <div className="ml-auto" >
+                        <a href="/" className='nav-item nav-item1'>Nữ</a>
+                        <a href="/about" className='nav-item nav-item2'>Nam</a>
+                        <a href="/contact" className='nav-item'>Trẻ em</a>
+                        <a href="/contact" className='nav-item nav-item4'>Tất Cả</a>
+
+                    </div>
+                    <div className='cart-div'>  <a href="/cart"><FontAwesomeIcon icon={faCartShopping} className='font-awe' /></a></div>
+
+                </div>
+            </div>
+        </div>
     );
 };
 
