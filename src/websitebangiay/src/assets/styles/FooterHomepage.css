@@ -1,0 +1,55 @@
+.container-footer {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.foolter {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 200px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    width: 10%;
+    border-radius: 50%;
+    height: 70%;
+
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    opacity: 0.8;
+}
+
+.footer-thongtinlienhe {
+    width: 25%;
+
+
+}
+
+.footer-chinhsach {
+    width: 20%;
+}
+
+.footer-hotro {
+    width: 15%;
+
+}
+
+.footer-mangxahoi {
+    width: 10%;
+}
+
+.logo:hover {
+    border: 2px solid black;
+    color: black;
+    opacity: 1;
+}
