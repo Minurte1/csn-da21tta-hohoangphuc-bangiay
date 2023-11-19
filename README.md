@@ -60,3 +60,6 @@ src
 - Thiết kế giao diện website
 - Thiết kế footer website
 - Thiết kế List Shoe được giảm giá
+#Ngày 19.11.2023
+- Thiết kế chức năng chitietmuagiay
+
