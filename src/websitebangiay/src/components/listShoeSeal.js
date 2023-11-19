@@ -1,5 +1,5 @@
 import React from 'react';
-import ShoeListSeal from '../components/childComponent/childListSeal';
+import { ShoeListSeal } from '../components/childComponent/childListSeal';
 
 const shoesData = [
     { id: 1, name: 'Puma', seal: '30', image: require('../assets/images-shoes/listShoe1.jpg'), href: '/cart', price: 99.99 },

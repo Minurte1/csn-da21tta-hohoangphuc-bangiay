@@ -1,35 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../childComponent/listShoe.css';
-function ShoeList({ shoes }) {
+import { useNavigate } from 'react-router-dom';
+import "./listShoe.css"
+export const handleItemClick = (shoe, navigate) => {
+    // Chuyển hướng đến trang chi tiết của sản phẩm khi sản phẩm được nhấp vào
+    console.log("=>>", shoe.id, shoe.name, shoe.image, shoe.price);
+    navigate(`/thongtinchitietgiay/${shoe.id}`, { state: shoe });
+};
+
+export const renderShoeItem = (shoe, handleItemClick) => {
+    return (
+        <li key={shoe.id} onClick={() => handleItemClick(shoe)}>
+            <img src={shoe.image} alt={shoe.name} />
+            <h3>{shoe.name}</h3>
+            <p>Price: ${shoe.price}</p>
+        </li>
+    );
+};
+
+export const ShoeList = ({ shoes }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="shoe-list">
-            <hr></hr>
-            <h2 className='list-shoe_h2'>Sản Phẩm Giày Mới</h2>
+            <h2>Shoe Collection</h2>
             <ul>
-                {shoes.map((shoe) => (
-                    <li key={shoe.id}>
-                        <a href={shoe.href} className='thea'>
-                            <img src={shoe.image} alt={shoe.name} />
-                            <h3>{shoe.name}</h3>
-                            <p>Price: ${shoe.price}</p>
-                        </a>
-                    </li>
-                ))}
+                {shoes.map((shoe) => renderShoeItem(shoe, () => handleItemClick(shoe, navigate)))}
             </ul>
         </div>
     );
-}
-
-ShoeList.propTypes = {
-    shoes: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-        })
-    ).isRequired,
 };
-
-export default ShoeList;

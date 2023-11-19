@@ -99,6 +99,13 @@
     /* Thêm hiệu ứng chuyển động */
 }
 
+.shoe-list li .discounted-price {
+    font-size: 16px;
+    color: #e74c3c;
+    /* Adjust color as needed */
+    font-weight: bold;
+}
+
 /* Add this style for the discount banner */
 .shoe-list li .discount-banner {
     position: absolute;
