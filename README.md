@@ -68,3 +68,6 @@ src
 #Ngày 20.11.2023
 - Thiết kế thongtinchitietgiay
 - Chức năng chọn size mua hàng
+#Ngày 20.11.2023
+-Thiết kế thongtinchitietgiay
+- Chức năng chọn size mua hàng
