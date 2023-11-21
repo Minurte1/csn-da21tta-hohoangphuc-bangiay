@@ -1,50 +1,94 @@
-/* muahang.css */
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.giay-info {
-    background-color: #f8f8f8;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.customer-info {
-    background-color: #f8f8f8;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 10px;
-}
-
-input,
-textarea {
+.muahang-container {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    height: auto;
+    justify-content: center;
+
+
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.logo-muahang {
+    width: 100px;
+    height: 100px;
+    font-weight: bold;
+    font-size: 40px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
 }
 
-button:hover {
-    background-color: #45a049;
+
+
+
+
+/* ------------------------------------ */
+.container-setup {
+    width: 100%;
+    height: 600px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+
+}
+
+.muahang-giay-info {
+    width: 50%;
+
+}
+
+.muahang-customer-info {
+    width: 50%;
+}
+
+.muahang-label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.muahang-form {
+    width: 100%;
+    height: auto;
+
+}
+
+.thongtinh-muahang {
+    margin-left: 10%;
+}
+
+.muahang-input {
+    width: 80%;
+    height: 40px;
+
+
+    border-radius: 5px;
+    border: 0.5 solid #333;
+    z-index: 3;
+
+}
+
+.container-tinhthanhvietnam {
+    width: 100%;
+    height: auto;
+}
+
+.tinhthanh {
+    width: 80%;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    margin-left: 10%;
+
+
+}
+
+.muahang-input:focus {
+    border: 2px solid rgb(51, 141, 188)c;
+}
+
+.tinhthanh:focus {
+    border: 2px solid rgb(51, 141, 188);
 }

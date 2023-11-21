@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+// MuaHang.js
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import "../assets/styles/muahang.css"
+import axios from 'axios';
+import '../assets/styles/muahang.css'; // Import tệp CSS
+const host = "https://provinces.open-api.vn/api/";
+
 const MuaHang = () => {
     const { state } = useLocation();
     const giay = state?.giay;
@@ -14,6 +18,10 @@ const MuaHang = () => {
         note: ''
     });
 
+    const [provinces, setProvinces] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [wards, setWards] = useState([]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCustomerInfo((prevInfo) => ({
@@ -22,71 +30,143 @@ const MuaHang = () => {
         }));
     };
 
+    useEffect(() => {
+        // Fetch provinces on component mount
+        axios.get(`${host}?depth=1`)
+            .then((response) => {
+                setProvinces(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
+
+    const handleProvinceChange = (provinceCode) => {
+        // Fetch districts based on selected province
+        axios.get(`${host}p/${provinceCode}?depth=2`)
+            .then((response) => {
+                setDistricts(response.data.districts);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const handleDistrictChange = (districtCode) => {
+        // Fetch wards based on selected district
+        axios.get(`${host}d/${districtCode}?depth=2`)
+            .then((response) => {
+                setWards(response.data.wards);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
     const handleOrder = () => {
-        // Thực hiện xử lý đặt hàng, có thể gửi thông tin đơn hàng và thông tin khách hàng lên server
-
-        // Ví dụ: Hiển thị thông tin đơn hàng và thông tin khách hàng trong console
-        console.log('Thông tin đơn hàng:', {
-            giay,
-            soLuong,
-            size,
-            customerInfo
-        });
-
-        // Thêm logic xử lý đặt hàng ở đây
-
-        // Chuyển hướng hoặc hiển thị thông báo thành công nếu cần
+        // Thực hiện xử lý đặt hàng
+        // ...
     };
 
     return (
-        <div>
-            <h2>Trang Mua Hàng</h2>
-            <p>Thông tin giày: {giay?.name}</p>
-            <p>Số lượng: {soLuong}</p>
-            <p>Size: {size}</p>
 
-            <h3>Thông tin khách hàng</h3>
-            <form>
-                <label>
-                    Tên:
-                    <input
-                        type="text"
-                        name="name"
-                        value={customerInfo.name}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label>
-                    Số điện thoại:
-                    <input
-                        type="text"
-                        name="phoneNumber"
-                        value={customerInfo.phoneNumber}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label>
-                    Địa chỉ:
-                    <input
-                        type="text"
-                        name="address"
-                        value={customerInfo.address}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label>
-                    Ghi chú:
-                    <textarea
-                        name="note"
-                        value={customerInfo.note}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <button type="button" onClick={handleOrder}>
-                    Đặt Hàng
-                </button>
-            </form>
-        </div>
+        <div className="muahang-container">
+            <a className='logo-muahang'><p>PhucShop</p></a>
+            <div className='container-setup'>
+                <div className="muahang-giay-info">
+                    <form className="muahang-form">
+                        <p className='thongtinh-muahang'>Thông tin giao hàng</p>
+                        <label className="muahang-label">
+
+                            <input
+                                type="text"
+                                name="name"
+                                value={customerInfo.name}
+                                onChange={handleInputChange}
+                                className="muahang-input"
+                                placeholder='Họ và tên'
+                            />
+                        </label> <br />
+                        <label className="muahang-label">
+
+                            <input
+                                type="text"
+                                name="name"
+                                value={customerInfo.name}
+                                onChange={handleInputChange}
+                                className="muahang-input"
+                                placeholder='Số điện thoại'
+                            />
+                        </label>
+                        <div className="container-tinhthanhvietnam">
+
+                            <select className='tinhthanh'
+                                name="province"
+                                onChange={(e) => handleProvinceChange(e.target.value)}
+                                value={customerInfo.province}
+                            >
+                                <option value="">Chọn</option>
+                                {provinces.map((province) => (
+                                    <option key={province.code} value={province.code}>
+                                        {province.name}
+                                    </option>
+                                ))}
+                            </select>  <br />
+                            <select
+                                name="district" className='tinhthanh'
+                                onChange={(e) => handleDistrictChange(e.target.value)}
+                                value={customerInfo.district}
+                            >
+                                <option value="">Chọn quận</option>
+                                {districts.map((district) => (
+                                    <option key={district.code} value={district.code}>
+                                        {district.name}
+                                    </option>
+                                ))}
+                            </select> <br />
+                            <select className='tinhthanh'
+                                name="ward"
+                                onChange={(e) => setCustomerInfo({ ...customerInfo, ward: e.target.value })}
+                                value={customerInfo.ward}
+                            >
+                                <option value="">Chọn phường</option>
+                                {wards.map((ward) => (
+                                    <option key={ward.code} value={ward.code}>
+                                        {ward.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <label className="muahang-label">
+
+                            <input
+                                type="text"
+                                name="name"
+                                value={customerInfo.name}
+                                onChange={handleInputChange}
+                                className="muahang-input" placeholder='Số nhà và tên đường'
+                            />
+                        </label> <br />
+                        <label className="muahang-label">
+
+                            <input
+                                type="text"
+                                name="name"
+                                value={customerInfo.name}
+                                onChange={handleInputChange}
+                                className="muahang-input" placeholder='Ghi chú'
+                            />
+                        </label>
+                        <p>Hình thức thanh toán tại nhà</p>
+                    </form>
+                </div>
+                <div className="muahang-customer-info">
+                    <button type="button" onClick={handleOrder} className="muahang-button">
+                        Đặt Hàng
+                    </button>
+                </div>
+            </div>
+        </div >
     );
 };
 
