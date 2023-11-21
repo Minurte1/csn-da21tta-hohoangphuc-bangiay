@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/styles/thongtinchitietgiay.css';
 
 const ThongTinChiTietGiay = () => {
     const { state } = useLocation();
     const [counterValue, setCounterValue] = useState(1);
     const [selectedSize, setSelectedSize] = useState(null);
-
+    const navigate = useNavigate();
     const handleClickMuaHang = (event) => {
-        event.preventDefault();
+
 
         if (selectedSize) {
-            alert(`Chúc mừng bạn đã mua hàng thành công - Giày ${state.name} với  Size: ${selectedSize} `);
+            alert(`Chúc mừng bạn đã mua hàng thành công - Giày ${state.name} với  Size: ${selectedSize} và ${counterValue} món hàng `);
+            navigate(`/muahang/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
+
+
             // Thêm mã xử lý mua hàng của bạn ở đây nếu cần
         } else {
             alert('Vui lòng chọn size trước khi mua hàng.');
@@ -62,7 +65,8 @@ const ThongTinChiTietGiay = () => {
                                 <input type="text" id="counter" value={counterValue} min={1} max={5000} readOnly />
                                 <div onClick={increment} className='span2'><p>+</p></div>
                             </div>
-                            <button className="purchase-button" onClick={handleClickMuaHang}>Mua Hàng</button>
+
+                            <button className="purchase-button" onClick={() => handleClickMuaHang(navigate)}>Mua Hàng</button>
                         </div>
                     </div>
                 </form>

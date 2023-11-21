@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ThongTinChiTietGiay from './views/thongtinchitietgiay';
 import Footer from './components/foolterHomepage';
 import MyNavbar from './components/NavbarhomePage';
+import MuaHang from './views/muahang';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -24,7 +25,7 @@ root.render(
           }
         />
         <Route path="/thongtinchitietgiay/:shoes" element={<><MyNavbar /><ThongTinChiTietGiay />    <Footer /></>} />
-
+        <Route path="/muahang/:id" element={<MuaHang></MuaHang>} />
       </Routes>
     </Router>
 
