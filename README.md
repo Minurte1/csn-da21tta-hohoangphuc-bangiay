@@ -70,3 +70,5 @@ src
 - Chức năng chọn size mua hàng
 #Ngày 21.11.2023 
 - Thiết kế Trang Mua Hàng
+#Ngày 22.12.2023 
+- Thiết kế trang Mua Hàng
