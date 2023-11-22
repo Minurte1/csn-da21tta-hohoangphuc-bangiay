@@ -10,14 +10,16 @@ const ThongTinChiTietGiay = () => {
     const handleClickMuaHang = (event) => {
 
 
-        if (selectedSize) {
-            alert(`Chúc mừng bạn đã mua hàng thành công - Giày ${state.name} với  Size: ${selectedSize} và ${counterValue} món hàng `);
-            navigate(`/muahang/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
+        if (selectedSize == undefined) {
 
+            alert('Vui lòng chọn Size giày');
+
+            event.preventDefault()
+            return 0;
 
             // Thêm mã xử lý mua hàng của bạn ở đây nếu cần
         } else {
-            alert('Vui lòng chọn size trước khi mua hàng.');
+            navigate(`/muahang/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
         }
     };
 
