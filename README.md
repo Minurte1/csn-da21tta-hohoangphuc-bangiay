@@ -72,3 +72,5 @@ src
 - Thiết kế Trang Mua Hàng
 #Ngày 22.12.2023 
 - Thiết kế trang Mua Hàng
+#Ngày 23.11.2023
+- Update fix
