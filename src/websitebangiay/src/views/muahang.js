@@ -51,6 +51,8 @@ const MuaHang = () => {
         axios.get(`${host}?depth=1`)
             .then((response) => {
                 setProvinces(response.data);
+                const data = response.data.name
+
 
             })
             .catch((error) => {
@@ -79,7 +81,7 @@ const MuaHang = () => {
                 console.log('huyen =>>', response.data.name)
                 const dis = response.data.name;
                 setWards(response.data.wards);
-                setCustomerInfo((prevInfo) => ({ ...prevInfo, province: dis }));
+                setCustomerInfo((prevInfo) => ({ ...prevInfo, districts: dis }));
             })
             .catch((error) => {
                 console.error(error);
@@ -117,13 +119,13 @@ const MuaHang = () => {
 
     const handleOrder = () => {
         console.log("Thông tin người dùng:", customerInfo);
-
+        console.log("Thông tin người dùng:", customerInfo.districts);
         // Call the printSelectedValues function to log the selected values
 
         // Additional logic to send customerInfo to the server or perform other actions
 
         // Thông báo đặt hàng thành công
-        alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "" + customerInfo.phoneNumber + "" + customerInfo.province + "" + customerInfo.district + "" + customerInfo.ward + "" + customerInfo.note);
+        alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
     };
 
 

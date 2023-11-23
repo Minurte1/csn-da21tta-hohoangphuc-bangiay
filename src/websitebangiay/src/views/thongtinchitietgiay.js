@@ -7,21 +7,19 @@ const ThongTinChiTietGiay = () => {
     const [counterValue, setCounterValue] = useState(1);
     const [selectedSize, setSelectedSize] = useState(null);
     const navigate = useNavigate();
-    const handleClickMuaHang = (event) => {
 
-
-        if (selectedSize == undefined) {
-
+    let handleClickMuaHang = (event) => {
+        if (selectedSize == null) {
             alert('Vui lòng chọn Size giày');
 
-            event.preventDefault()
-            return 0;
-
-            // Thêm mã xử lý mua hàng của bạn ở đây nếu cần
+            event.preventDefault(); // Ngăn chặn sự kiện navigation mặc định
         } else {
+
             navigate(`/muahang/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
         }
+        // Thêm mã xử lý mua hàng của bạn ở đây nếu cần
     };
+
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
@@ -68,7 +66,10 @@ const ThongTinChiTietGiay = () => {
                                 <div onClick={increment} className='span2'><p>+</p></div>
                             </div>
 
-                            <button className="purchase-button" onClick={() => handleClickMuaHang(navigate)}>Mua Hàng</button>
+                            <button type="button" className="purchase-button" onClick={(event) => handleClickMuaHang(event)}>
+                                Mua Hàng
+                            </button>
+
                         </div>
                     </div>
                 </form>

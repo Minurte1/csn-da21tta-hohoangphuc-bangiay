@@ -18,7 +18,7 @@ const MyNavbar = () => {
                 <div isOpen={isOpen} className='isOpen'>
                     {/* <img src={LogoNavbar} alt="Logo" className='image-navbar' /> */}
                     <a className='image-navbar'>
-                        Phuc_Magin2px
+                        PhucShoe
                     </a>
                     <div className="ml-auto" >
                         <a href="/" className='nav-item nav-item1'>Nữ</a>

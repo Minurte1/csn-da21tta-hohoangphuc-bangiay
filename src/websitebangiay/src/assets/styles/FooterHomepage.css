@@ -2,8 +2,8 @@
     width: 100%;
     height: 200px;
     display: flex;
-    justify-content: center;
-    margin-top: 5%;
+
+
 }
 
 .foolter {
@@ -18,56 +18,76 @@
 
 }
 
+.footer-hr {
+    width: 1px;
+    height: 100%;
+    border: 1px solid black;
+    margin-top: -1%;
+    opacity: 0.1;
+    margin-right: 3%;
+}
 
 
 .logo {
-    width: 10%;
+    width: 90%;
     border-radius: 50%;
-    height: 70%;
+    height: 100%;
 
-    border: 1px solid black;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+
+    font-family: Agbalumo;
     justify-content: center;
     align-items: center;
     display: flex;
-    opacity: 0.8;
-    font-family: Agbalumo;
+
 
 }
 
-.logo>p {
-    animation: hueRotate 5s alternate infinite;
-    z-index: 5;
+
+.footer-logo {
+    width: 20%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
 }
 
 .footer-thongtinlienhe {
-    width: 25%;
+    width: 30%;
 
 
 }
 
 .footer-chinhsach {
-    width: 20%;
+    width: 30%;
 }
 
 .footer-hotro {
-    width: 15%;
+    width: 30%;
 
 
 
+}
+
+.footer-thongtin2 {
+    color: black;
+    font-size: 19px;
+    font-weight: bold;
+
+    font-family: "Roboto Condensed";
 }
 
 .footer-mangxahoi {
-    width: 10%;
+    width: 30%;
 }
 
-.logo:hover {
-    border: 3px solid #466445;
-
-    color: #466445;
-    opacity: 1;
 
 
-}
+
+
 
 @keyframes hueRotate {
     0% {
