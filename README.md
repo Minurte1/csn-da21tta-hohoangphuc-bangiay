@@ -65,12 +65,16 @@ src
 
 #Ngày 19.11.2023
 - Thiết kế chức năng chitietmuagiay
+  
 #Ngày 20.11.2023
 - Thiết kế thongtinchitietgiay
 - Chức năng chọn size mua hàng
+  
 #Ngày 21.11.2023 
 - Thiết kế Trang Mua Hàng
+  
 #Ngày 22.12.2023 
 - Thiết kế trang Mua Hàng
+  
 #Ngày 23.11.2023
 - Update fix
