@@ -9,6 +9,8 @@ import ThongTinChiTietGiay from './views/thongtinchitietgiay';
 import Footer from './components/foolterHomepage';
 import MyNavbar from './components/NavbarhomePage';
 import MuaHang from './views/muahang';
+import ThongTinChiTietGiaySeal from './views/thongtinchitietgiayseal';
+import MuaHangSeal from './views/muahangseal';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -25,7 +27,9 @@ root.render(
           }
         />
         <Route path="/thongtinchitietgiay/:shoes" element={<><MyNavbar /><ThongTinChiTietGiay />    <Footer /></>} />
+        <Route path="/thongtinchitietgiayseal/:shoes" element={<><MyNavbar /><ThongTinChiTietGiaySeal />    <Footer /></>} />
         <Route path="/muahang/:id" element={<MuaHang></MuaHang>} />
+        <Route path="/muahangseal/:id" element={<MuaHangSeal></MuaHangSeal>} />
       </Routes>
     </Router>
 

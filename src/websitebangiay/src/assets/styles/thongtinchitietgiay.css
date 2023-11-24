@@ -46,6 +46,24 @@
     height: 500px;
 }
 
+.product-image_banner {
+    position: absolute;
+    background-color: #e74c3c;
+    /* Adjust color as needed */
+    color: #fff;
+    padding: 5px 10px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.product-priceseal {
+    color: black;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
 .product-h3 {
     width: 40%;
     height: 400px;

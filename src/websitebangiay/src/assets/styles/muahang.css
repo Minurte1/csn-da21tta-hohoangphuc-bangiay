@@ -153,7 +153,15 @@
 .sanpham-price {
     margin-left: 10%;
     font-size: 18px;
+    color: #000000;
+}
+
+.sanpham-price1 {
+    margin-left: 5%;
+    font-size: 15px;
     color: #565252;
+    text-decoration: line-through;
+    opacity: 0.7;
 }
 
 .muahang-magiamgia1 {
@@ -201,7 +209,7 @@
 
 
 .muahang-tamtinh3 {
-    margin-left: 80%;
+    margin-left: 83%;
 }
 
 .muahang-phivanchuyen {
@@ -214,11 +222,27 @@
 
 .muahang-tongcong {
     font-size: 20px;
+
 }
 
+
 .muahang-tongcong1 {
-    font-size: 20px;
-    margin-left: 73%;
+    margin-left: 78%;
+}
+
+.muahang-tongcong2 {}
+
+.product-muahang_banner {
+    position: absolute;
+    background-color: #e74c3c;
+    /* Adjust color as needed */
+    color: #fff;
+    padding: 5px 10px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 2;
 }
 
 .muahang-button {

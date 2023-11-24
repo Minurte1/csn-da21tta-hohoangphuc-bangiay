@@ -3,7 +3,7 @@ import "./listShoeSeal.css"
 export const handleItemClick = (shoe, navigate) => {
     // Chuyển hướng đến trang chi tiết của sản phẩm khi sản phẩm được nhấp vào
     console.log("=>>", shoe.id, shoe.name, shoe.image, shoe.price);
-    navigate(`/thongtinchitietgiay/${shoe.id}`, { state: shoe });
+    navigate(`/thongtinchitietgiayseal/${shoe.id}`, { state: shoe });
 };
 
 export const renderShoeItem = (shoe, handleItemClick) => {
