@@ -15,7 +15,7 @@ const ThongTinChiTietGiaySeal = () => {
             event.preventDefault(); // Ngăn chặn sự kiện navigation mặc định
         } else {
 
-            navigate(`/muahangseal/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
+            navigate(`/muahang/${state.id}`, { state: { giay: state, soLuong: counterValue, size: selectedSize } });
         }
         // Thêm mã xử lý mua hàng của bạn ở đây nếu cần
     };
