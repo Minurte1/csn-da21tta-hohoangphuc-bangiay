@@ -28,7 +28,8 @@ function Footer() {
                     <div className="footer-mangxahoi"> <p className="footer-thongtin2"> Mạng xã hội</p><p><a href="/" className="thea footer-facebook">Facebook</a></p>
                         <p><a href="/" className="thea">Instagram</a></p>
                         <p><a href="/" className="thea">Tiktok</a></p></div>
-                </div></div >
+                </div>
+            </div >
         </>
 
     );
