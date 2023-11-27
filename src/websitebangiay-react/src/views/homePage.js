@@ -13,7 +13,7 @@ class HomePage extends React.Component {
         return (
             <>
 
-                <MyNavbar></MyNavbar>
+               <MyNavbar></MyNavbar> 
                 <CarouselHomepage />
                 < ImfoHomepage></ImfoHomepage>
                 < ListShoe></ListShoe>
