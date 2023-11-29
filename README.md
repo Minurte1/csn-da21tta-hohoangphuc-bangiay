@@ -80,3 +80,5 @@ src
 - Update fix
 #Ngày 27.11.2023 
 - Cập nhật nodejs chức năng thêm dữ liệu sản phẩm
+# Ngày 29.11.2023
+- Liên kết nodejs với react
