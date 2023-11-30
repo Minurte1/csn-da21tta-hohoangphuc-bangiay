@@ -24,7 +24,7 @@ function AppCer() {
 
         fetchData();
     }, []);
-
+    console.log('apperdata=>', data)
     return (
         <div className="data-table">
             <table>

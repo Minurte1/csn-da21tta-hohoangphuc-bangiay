@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShoeList } from '../components/childComponent/childListShoe';
-
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 // const shoesDatas = [
 //     { id: 1, name: 'Puma', image: require('../assets/images-shoes/listShoe1.jpg'), href: '/cart', price: 99.99 },
@@ -24,13 +24,8 @@ function ListShoe() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3003/api/data");
-                if (!response.ok) {
-                    throw new Error("Yêu cầu không thành công");
-                }
-
-                const jsonResponse = await response.json();
-                const responseData = JSON.parse(jsonResponse);
+                const response = await axios.get("http://localhost:3003/api/data");
+                const responseData = JSON.parse(response.data);
 
                 setData(responseData);
                 console.log(responseData);
@@ -42,10 +37,10 @@ function ListShoe() {
         fetchData();
     }, []);
 
+    console.log('checkdatalistSHOE', data);
 
     return (
         <div className="App">
-
             <ShoeList shoes={data} />
         </div>
     );
