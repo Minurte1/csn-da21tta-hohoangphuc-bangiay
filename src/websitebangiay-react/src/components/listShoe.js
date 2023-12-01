@@ -24,18 +24,26 @@ function ListShoe() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3003/api/data");
-                const responseData = JSON.parse(response.data);
+                const response = await axios.get("http://localhost:3003/api/v1/product");
 
-                setData(responseData);
-                console.log(responseData);
+                setData({
+                    data: response.data.data,
+                    loading: false,
+                });
+
+                console.log(response.data);
             } catch (error) {
                 console.error(error.message);
+                setData({
+                    error: error.message,
+                    loading: false,
+                });
             }
         };
 
         fetchData();
     }, []);
+
 
     console.log('checkdatalistSHOE', data);
 

@@ -6,6 +6,7 @@ import ImfoHomepage from "../components/imfomationHomepage"
 import ChildLists from "../components/listShoeSeal"
 import Footer from "../components/foolterHomepage";
 import AppCer from "../api/api";
+import Item from "../api/test";
 
 class HomePage extends React.Component {
 
@@ -21,7 +22,7 @@ class HomePage extends React.Component {
                 < ListShoe></ListShoe>
                 <ChildLists></ChildLists>
                 <Footer></Footer>
-                <AppCer></AppCer>
+
             </>
         )
     }

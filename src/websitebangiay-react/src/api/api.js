@@ -7,7 +7,7 @@ function AppCer() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3003/api/data");
+                const response = await fetch("http://localhost:3003/api/v1/product");
                 if (!response.ok) {
                     throw new Error("Yêu cầu không thành công");
                 }

@@ -128,7 +128,7 @@ const MuaHang = () => {
         alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
     };
 
-
+    const GIA = parseFloat(giay.GIA).toFixed(0);
 
     return (
 
@@ -234,10 +234,10 @@ const MuaHang = () => {
                     <div className='thongtin-sanpham'>
                         <div className='thongtin-sanpham_2'>
                             <span className='discount-bannerr' >{soLuong}</span>
-                            <img src={giay.image} className='sanpham-img'></img>
+                            <img src={`http://localhost:3003/images/${giay.description}`} className='sanpham-img'></img>
 
-                            <span className='sanpham-name'>Giày Thời Trang {giay.name}  </span>
-                            <span className='sanpham-price'>${giay.price}</span>
+                            <span className='sanpham-name'>Giày Thời Trang {giay.TENSANPHAM}  </span>
+                            <span className='sanpham-price'>${GIA}</span>
                         </div>
 
                         <hr></hr>
@@ -255,15 +255,15 @@ const MuaHang = () => {
                         <hr></hr>
                         <div className='muahang-tamtinh'>  <span className='muahang-tamtinh1'>Tạm tính</span>
 
-                            <span className='muahang-tamtinh3'>${giay.price * soLuong}</span>  </div>
+                            <span className='muahang-tamtinh3'>{GIA * soLuong} đ</span>  </div>
                         <div className='muahang-phivanchuyen'>
                             <span>Phí vận chuyển</span>
-                            <span className='muahang-phivanchuyen1'>$2</span>
+                            <span className='muahang-phivanchuyen1'>30,000đ</span>
                         </div>
                         <hr></hr>
                         <div className='muahang-tongcong'>
                             <span>Tổng cộng</span>
-                            <span className='muahang-tongcong1'>${giay.price * soLuong + 2}</span>
+                            <span className='muahang-tongcong1'>{GIA * soLuong + 30000} đ</span>
                         </div>
                         <button type="button" onClick={handleOrder} className="muahang-button">
                             Đặt Hàng

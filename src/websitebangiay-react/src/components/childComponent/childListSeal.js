@@ -1,35 +1,42 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./listShoeSeal.css"
+import "./listShoe.css";
+
 export const handleItemClick = (shoe, navigate) => {
-    // Chuyển hướng đến trang chi tiết của sản phẩm khi sản phẩm được nhấp vào
-    console.log("=>>", shoe.id, shoe.name, shoe.image, shoe.price);
-    navigate(`/thongtinchitietgiayseal/${shoe.id}`, { state: shoe });
+    console.log("Item clicked:", shoe);
+    navigate(`/thongtinchitietgiay/${shoe.MASP}`, { state: shoe });
 };
 
-export const renderShoeItem = (shoe, handleItemClick) => {
+export const renderShoeItem = (shoe, navigate) => {
+    console.log("Rendering shoe item:", shoe);
+
+    // Làm tròn giá đến hai chữ số sau dấu thập phân
+    const roundedPrice = parseFloat(shoe.GIA).toFixed(0);
+
     return (
-        <li key={shoe.id} onClick={() => handleItemClick(shoe)}>
-            <div className='discount-banner'>Giảm {shoe.seal}%</div>
-            <img src={shoe.image} alt={shoe.name} />
-            <h3>{shoe.name}</h3>
-            <p>Price: <span className="shoe-list_seal">${shoe.price}</span></p>
-            <p className="discounted-price">${((shoe.price * ((100 - shoe.seal) / 100))).toFixed(2)}</p>
+        <li key={shoe.MASP} onClick={() => handleItemClick(shoe, navigate)}>
+            <img src={`http://localhost:3003/images/${shoe.description}`} alt={shoe.TENSANPHAM} />
+            <h3>{shoe.TENSANPHAM}</h3>
+            <p>Price: {roundedPrice}</p>
         </li>
     );
 };
 
-
-export const ShoeListSeal = ({ shoes }) => {
+export const ShoeList = ({ shoes }) => {
+    console.log('check=>>>>', shoes);
+    console.log(typeof shoes);
     const navigate = useNavigate();
+
+    if (!shoes || !shoes.data || !Array.isArray(shoes.data) || shoes.data.length === 0) {
+        return <div>No shoes available</div>;
+    }
 
     return (
         <div className="shoe-list">
             <h2>Shoe Collection</h2>
             <ul>
-                {shoes.map((shoe) => renderShoeItem(shoe, () => handleItemClick(shoe, navigate)))}
+                {shoes.data.map((shoe) => renderShoeItem(shoe, navigate))}
             </ul>
         </div>
     );
 };
-
-
