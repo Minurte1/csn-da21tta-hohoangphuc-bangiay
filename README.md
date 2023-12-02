@@ -84,3 +84,5 @@ src
 - Liên kết nodejs với react
 # Ngày 30.11.2023
 - Liên kết nodejs với react
+# Ngày 1.12.2023
+- Liên kết và hiển thị dữ liệu sản phẩm lên giao diện
