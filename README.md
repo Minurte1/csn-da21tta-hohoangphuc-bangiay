@@ -86,3 +86,5 @@ src
 - Liên kết nodejs với react
 # Ngày 1.12.2023
 - Liên kết và hiển thị dữ liệu sản phẩm lên giao diện
+# Ngày 2.12.2023
+- Điều chỉnh Nodejs cập nhật các Hãng Giày, Loại Giày,..
