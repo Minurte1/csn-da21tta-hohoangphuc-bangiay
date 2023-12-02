@@ -14,7 +14,7 @@
 <body>
     <div class="topnav">
         <a href="/">Home</a>
-        <a href="/create" class="active">Tạo Sản Phẩm</a>
+        <a href="/create" class="active">Thêm Sản Phẩm</a>
         <a href="/create-loaisanpham" class="active">Thêm Loại Giày</a>
         <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
     </div>
@@ -36,20 +36,34 @@
                 </div>
                 <div class="input-group">
                     <label for="size">Tên Hãng</label>
-                    <select name="Tenhang" id="">
-                        <!-- Thêm các option từ cơ sở dữ liệu -->
-                        <option value="Nike">Nike</option>
 
-                        <!-- Thêm các option khác nếu cần -->
+                    <select name="Tenhang">
+                        <% AllHangSP.forEach(function(AllHangSP) { %>
+                            <option value="<%= AllHangSP.TENHANG %>">
+                                <%= AllHangSP.TENHANG %>
+                            </option>
+                            <% }); %>
+                                <!-- Thêm các option khác nếu cần -->
                     </select>
+
                 </div>
                 <!-- <div class="input-group input-groupcity">
                     <label for="">Mô tả sản phẩm</label>
                     <input type="text" name="Mota">
                 </div> -->
                 <div class="input-group">
-                    <label for="">Mã Loại</label>
-                    <input type="text" name="Loaisanpham">
+                    <label for="size">Loại Sản Phẩm</label>
+                    <select name="MALOAI">
+                        <% AllLoaiSP.forEach(function(AllLoaiSP) { %>
+
+
+                            <option value="<%= AllLoaiSP.MALOAI %>">
+                                <%= AllLoaiSP.name %>
+                            </option>
+                            <% }); %>
+                                <!-- Thêm các option khác nếu cần -->
+                    </select>
+
                 </div>
                 <div class="input-group">
                     <label for="size">Size</label>

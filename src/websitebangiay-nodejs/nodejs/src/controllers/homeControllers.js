@@ -29,9 +29,9 @@ const getChonSanPham = async (req, res) => {
 const getHomepagee = async (req, res) => {
 
     let results = await getAllSanPham();
-
+    let AllLoaiSPP = await getAllLoaiSP()
     console.log('>> check rows', results);
-    return res.render('home.ejs', { listSanpham: results })
+    return res.render('home.ejs', { listSanpham: results, AllHangSP: AllLoaiSPP })
     // res.json(JSON.stringify(results))
 
 
@@ -44,6 +44,7 @@ const getHomepagee = async (req, res) => {
 //----------------LOAI SAN PHAM ---------------
 const getCreateLoaiSP = async (req, res) => {
     const AllLSPP = await getAllLoaiSP();
+    ;
     res.render('createLoaiSP.ejs', { AllLoaiSP: AllLSPP })
 }
 const getAppcetLoaiSP = async (req, res) => {
@@ -90,9 +91,11 @@ const postCreateSanpham = async (req, res) => {
     var tenSanpham = req.body.tenSanpham;
     // var Mota = req.file.filename;
     var Soluong = req.body.Soluong;
-    var Loaisanpham = req.body.Loaisanpham
+    var Loaisanpham = req.body.MALOAI
     var Size = req.body.Size;
-    var Tenhang = req.body.Tenhang;
+    var Tenhang = req.body.Tenhang // Lọc giá trị
+    console.log('hang', Tenhang)
+    console.log('LOAISP', Loaisanpham)
     // connection.execute(
     //     `INSERT INTO User (email,name,city) VALUES (?,?,?);`,
     //     [email, name, city],
@@ -104,7 +107,7 @@ const postCreateSanpham = async (req, res) => {
     // await getLoaisanpham(Loaisanpham);
     // await getHang(Tenhang);
     // await getSize((Size))
-
+    // let AllHangSP = await getAllHang()
     if (req.fileValidationError) {
         return res.status(400).json({ error: req.fileValidationError });
     } else if (!req.file) {
@@ -205,8 +208,10 @@ const postDeleteUser = async (req, res) => {
     res.render('delete.ejs', { userEdit: user })
 
 }
-const getCreatePage = (req, res) => {
-    res.render('create.ejs');
+const getCreatePage = async (req, res) => {
+    let results = await getAllHang();
+    let AllLoaiSPP = await getAllLoaiSP()
+    res.render('create.ejs', { AllHangSP: results, AllLoaiSP: AllLoaiSPP });
 }
 const postHandleRemoveSanpham = async (req, res) => {
     try {
