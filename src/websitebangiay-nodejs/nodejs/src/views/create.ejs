@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Create Users</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/create" class="active">Tạo Sản Phẩm</a>
+        <a href="/create-loaisanpham" class="active">Thêm Loại Giày</a>
+        <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
+    </div>
+    <div class="form">
+        <form action="/create-Sanpham" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <legend>Form add new users</legend>
+                <!-- <div class="input-group">
+                    <label for="">Mã Sản Phẩm</label>
+                    <input type="text" id="MASP" name="MASP">
+                </div> -->
+                <div class="input-group">
+                    <label for="">Giá bán</label>
+                    <input type="text" id="EmailId" name="Gia">
+                </div>
+                <div class="input-group">
+                    <label for="">Tên Sản Phẩm</label>
+                    <input type="text" name="tenSanpham">
+                </div>
+                <div class="input-group">
+                    <label for="size">Tên Hãng</label>
+                    <select name="Tenhang" id="">
+                        <!-- Thêm các option từ cơ sở dữ liệu -->
+                        <option value="Nike">Nike</option>
+
+                        <!-- Thêm các option khác nếu cần -->
+                    </select>
+                </div>
+                <!-- <div class="input-group input-groupcity">
+                    <label for="">Mô tả sản phẩm</label>
+                    <input type="text" name="Mota">
+                </div> -->
+                <div class="input-group">
+                    <label for="">Mã Loại</label>
+                    <input type="text" name="Loaisanpham">
+                </div>
+                <div class="input-group">
+                    <label for="size">Size</label>
+                    <select name="Size" id="size">
+                        <!-- Thêm các option từ cơ sở dữ liệu -->
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <!-- Thêm các option khác nếu cần -->
+                    </select>
+                </div>
+                <div class="input-group input-groupcity">
+                    <label for="">Số lượng</label>
+                    <input type="text" name="Soluong">
+                </div>
+                <div class="input-group input-groupcity">
+                    <label for="">Thông tin chi tiết mô tả sản phẩm</label>
+                    <input type="text" name="thongtinsanpham">
+                </div>
+                <div>
+                    <label for="">Avatar: </label>
+                    <input type="file" name="profile_pic" />
+                </div>
+                <td>
+                    <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data"></form>
+                </td>
+                <div class="button">
+                    <button> Adđ New User</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

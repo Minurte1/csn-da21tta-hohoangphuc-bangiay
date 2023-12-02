@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Create Users</title>
+</head>
+<style>
+
+</style>
+
+<body>
+
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/create">Update a Users</a>
+    </div>
+
+    <div class="form">
+        <form action="/update-sanpham" method="post">
+            <fieldset>
+                <legend>Update new users</legend>
+
+                <div class="input-group">
+                    <label for="MASP">MÃ SẢN PHẨM</label>
+                    <input type="text" name="MASP" value="<%= SanphamEdit.MASP %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="TENSANPHAM">TÊN SẢN PHẨM</label>
+                    <input type="text" name="TENSANPHAM" value="<%= SanphamEdit.TENSANPHAM %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="TENHANG">TÊN HÃNG</label>
+                    <input type="text" name="TENHANG" value="<%= SanphamEdit.TENHANG %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="GIA">GIÁ</label>
+                    <input type="text" name="GIA" value="<%= SanphamEdit.GIA %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="MALOAI">MÃ LOẠI</label>
+                    <input type="text" name="MALOAI" value="<%= SanphamEdit.MALOAI %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="SIZE">SIZE</label>
+                    <input type="text" name="SIZE" value="<%= SanphamEdit.GIATRI %>">
+                </div>
+
+                <div class="input-group">
+                    <label for="SOLUONG">SỐ LƯỢNG</label>
+                    <input type="text" name="SOLUONG" value="<%= SanphamEdit.SOLUONG %>">
+                </div>
+
+                <div>
+                    <label for="profile_pic">Avatar: </label>
+                    <input type="file" name="profile_pic" value="<%= SanphamEdit.description %>" />
+                </div>
+
+                <div class="button">
+                    <button> Adđ New User</button>
+                </div>
+
+                <form action="/delete-sanpham/<%= SanphamEdit.MASP %>" method="post">
+                    <button>Xóa Sản Phẩm</button>
+                </form>
+            </fieldset>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá bán</th>
+                    <th>Mô tả</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% AllSanpham.forEach(function(sanpham) { %>
+                    <tr>
+                        <td>
+                            <%= sanpham.MASP %>
+                        </td>
+                        <td>
+                            <%= sanpham.TENSANPHAM %>
+                        </td>
+                        <td>
+                            <%= sanpham.GIA %>
+                        </td>
+                        <td>
+                            <%= sanpham.SOLUONG %>
+                        </td>
+                        <td>
+                            <img src="/images/<%= sanpham.description %>" alt="" width="50px" height="50px" />
+                        </td>
+                        <td>
+                            <form action="/delete-sanpham/<%= sanpham.MASP %>" method="post">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
