@@ -88,3 +88,5 @@ src
 - Liên kết và hiển thị dữ liệu sản phẩm lên giao diện
 # Ngày 2.12.2023
 - Điều chỉnh Nodejs cập nhật các Hãng Giày, Loại Giày,..
+# Ngày 3.12.2023
+- Lấy dữ liệu Khách Hàng từ giao diện người dùng về CSDL
