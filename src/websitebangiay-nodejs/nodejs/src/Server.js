@@ -9,8 +9,9 @@ const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routers/web.js');
 const connection = require('./config/database');
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 const apiRoute = require('../src/routers/api.js')
+const apiFront = require('../src/routers/apiFront.js')
 //config template engine
 
 
@@ -22,7 +23,17 @@ const apiRoute = require('../src/routers/api.js')
 //     }
 
 // )
+
 app.use(cors())
+
+app.use(bodyParser.json());
+app.use('/api/v1', apiFront);
+// app.post('/api/v1/product', (req, res) => {
+//     const dataFromFrontend = req.body.data;
+//     console.log('Data from frontend:', dataFromFrontend);
+//     res.json({ message: 'Data received successfully' });
+// });
+
 app.use("/api/v1/", apiRoute);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -30,5 +30,21 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
+const getProduct = async (req, res) => {
+    try {
+        const { name, phoneNumber, address, note, province, districts, ward } = req.body.data;
+        const getaddress = address + ", " + ward + ", " + districts + ", " + province;
+        console.log(getaddress);
+        const [results, fields] = await (await connection).query(
+            'INSERT INTO KHACHHANG (TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?, ?, ?, ?)',
+            [name, phoneNumber, getaddress, note]
+        );
 
-module.exports = { getAllProduct }; // Export as an object
+        res.json({ message: 'Data received and inserted successfully' });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+module.exports = { getAllProduct, getProduct }; // Export as an object

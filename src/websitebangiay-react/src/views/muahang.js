@@ -112,6 +112,18 @@ const MuaHang = () => {
     // };
 
 
+    const sendDataToBackend = async () => {
+        try {
+            const response = await axios.post('http://localhost:3003/api/v1/product', {
+                data: customerInfo,
+            });
+            console.log('Success:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
 
 
 
@@ -265,9 +277,10 @@ const MuaHang = () => {
                             <span>Tổng cộng</span>
                             <span className='muahang-tongcong1'>{GIA * soLuong + 30000} đ</span>
                         </div>
-                        <button type="button" onClick={handleOrder} className="muahang-button">
+                        <button type="button" onClick={() => { handleOrder(); sendDataToBackend(); }} className="muahang-button">
                             Đặt Hàng
                         </button>
+
                     </div>
 
 
