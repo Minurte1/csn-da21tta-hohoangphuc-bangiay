@@ -1,6 +1,6 @@
 const connection = require('../config/database');
 const { get } = require('../routers/web');
-const { getAllSanPham, getAllHang, getUpdateSanPhamID, getAllLoaiSP } = require('../services/CRUDServices');
+const { getInfoUser, getAllSanPham, getAllHang, getUpdateSanPhamID, getAllLoaiSP } = require('../services/CRUDServices');
 
 
 const getUpdatePage = async (req, res) => {
@@ -199,15 +199,15 @@ const getUpdateSanpham = async (req, res) => {
 
 
 };
-const postDeleteUser = async (req, res) => {
+// const postDeleteUser = async (req, res) => {
 
-    const usersID = req.params.id;
-    const [results, fields] = await (await connection).query('SELECT * FROM User WHERE id = ?', [usersID]);
-    console.log('=>>> ', results)
-    let user = results && results.length > 0 ? results[0] : {};
-    res.render('delete.ejs', { userEdit: user })
+//     const usersID = req.params.id;
+//     const [results, fields] = await (await connection).query('SELECT * FROM User WHERE id = ?', [usersID]);
+//     console.log('=>>> ', results)
+//     let user = results && results.length > 0 ? results[0] : {};
+//     res.render('delete.ejs', { userEdit: user })
 
-}
+// }
 const getCreatePage = async (req, res) => {
     let results = await getAllHang();
     let AllLoaiSPP = await getAllLoaiSP()
@@ -228,8 +228,22 @@ const postHandleRemoveSanpham = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }
+//  ----------------------- USER ---------------------------------
+const InfoUser = async (req, res) => {
+    let getUser = await getInfoUser();
+    res.render('InfoUser.ejs', { User: getUser })
+}
+const getItemUser = async (req, res) => {
+    res.render('Donhang.ejs');
+}
+const getDeleteUser = async (req, res) => {
+    var productID = req.params.id;
+    console.log('>> productID = ', productID);
 
-
+    const [results, fields] = await (await connection).query('DELETE FROM KHACHHANG WHERE MAKHACHHANG = ?', [productID]);
+    let getUser = await getInfoUser();
+    res.render('InfoUser.ejs', { User: getUser })
+}
 module.exports = {
     // getAllProduct,
     getABC,
@@ -239,7 +253,7 @@ module.exports = {
     getCreatePage,
     getUpdatePage,
     getUpdateSanpham,
-    postDeleteUser,
+    // postDeleteUser,
     postHandleRemoveSanpham,
     getHomepagee,
     getChonSanPham,
@@ -252,4 +266,8 @@ module.exports = {
     getCreateHangSP,
     getAppcetHangSP,
     getDeleteHangSP,
+    //  --------- USER ------------
+    InfoUser,
+    getItemUser,
+    getDeleteUser
 }

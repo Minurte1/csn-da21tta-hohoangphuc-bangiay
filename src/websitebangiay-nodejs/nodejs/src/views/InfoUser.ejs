@@ -1,23 +1,24 @@
-< !DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/style.css">
-        <title>HomePage</title>
-    </head>
-    <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>HomePage</title>
+</head>
+<style>
 
-    </style>
+</style>
 
-    <body>
-        <div class="topnav">
-            <a class="active" href="/">Home</a>
-            <a href="/create">Create Sản Phẩm</a>
-
-        </div>
-        <!-- <div class="form">
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/create">Create Sản Phẩm</a>
+        <a href="/khachhang">Thông Tin Khách Hàng</a>
+        <a href="/khachhang">Thông Tin Khách Hàng</a>
+    </div>
+    <!-- <div class="form">
                             <form action="/create-Sanpham" enctype="multipart/form-data" method="post">
                                 <fieldset>
                                     <legend>Form add new users</legend>
@@ -76,73 +77,62 @@
                                 </fieldset>
                             </form>
                         </div> -->
-        <div class="list-users"> Danh Sách Sản Phẩm
+    <div class="list-users">
 
-            <table>
+        <table>
+            <tr>
+                <th>Mã Khách Hàng </th>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+
+                <th>Ghi chú</th>
+
+            </tr>
+            <% User.forEach(function(User) { %>
                 <tr>
-                    <th>Mã </th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Tên Hãng</th>
-                    <th>Giá bán</th>
 
-                    <th>Mã Loại</th>
-                    <th>Size </th>
-                    <th>Số lượng</th>
-                    <th> Mô tả</th>
-                    <th> Hình ảnh</th>
+                    <td>
+                        <%= User.MAKHACHHANG %>
+                    </td>
+                    <td>
+                        <%= User.TEN %>
+                    </td>
+                    <td>
+                        <%= User.DIACHI %>
+                    </td>
+                    <td>
+                        <%=User.SODIENTHOAI %>
+                    </td>
+                    <td>
+                        <%=User.GHICHU %>
+                    </td>
+
+
+
+
+
+
+
+                    <td>
+                        <form action="/xem-sanpham/<%= User.MAKHACHHANG %>" method="post"><button>Xem thêm</button>
+                        </form>
+                        <form action="/delete-user/<%= User.MAKHACHHANG %>" method="post"><button>Xóa</button>
+                        </form>
+
+                    </td>
+
                 </tr>
-                <% listSanpham.forEach(function(listSanpham) { %>
-                    <tr>
 
-                        <td>
-                            <%= listSanpham.MASP %>
-                        </td>
-                        <td>
-                            <%= listSanpham.TENSANPHAM %>
-                        </td>
-                        <td>
-                            <%= listSanpham.TENHANG %>
-                        </td>
-                        <td>
-                            <%= listSanpham.GIA %>
-                        </td>
-
-                        <td>
-                            <%= listSanpham.MALOAI %>
-                        </td>
-                        <td>
-                            <%= listSanpham.GIATRI %>
-                        </td>
-                        <td>
-                            <%= listSanpham.SOLUONG %>
-                        </td>
-                        <td>
-                            <%= listSanpham.THONGTINSANPHAM %>
-                        </td>
-                        <td>
-
-
-                            <img src="/images/<%= listSanpham.description %>" alt="" width="50px" height="50px" />
-                        </td>
-
-                        <td>
-                            <form action="/chon-sanpham/<%= listSanpham.MASP %>" method="post"><button>Chọn</button>
-                            </form>
-
-
-                        </td>
-
-                    </tr>
-
-                    <% }); %>
+                <% }); %>
 
 
 
-            </table>
+        </table>
 
-        </div>
+    </div>
 
-    </body>
+</body>
 
 
-    </html>
+</html>

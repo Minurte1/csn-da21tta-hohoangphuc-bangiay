@@ -2,7 +2,7 @@ const express = require('express')
 const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-const { getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
+const { getDeleteUser, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
 var appRoot = require("app-root-path");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -63,8 +63,11 @@ router.post('/chon-sanpham/:id', getChonSanPham)
 // router.get('/update/:id', getUpdatePage)
 router.post('/update-sanpham', getUpdateSanpham)
 router.post('/create-Sanpham', upload.single("profile_pic"), postCreateSanpham);
-router.post('/delete-user/:id', postDeleteUser);
+// router.post('/delete-user/:id', postDeleteUser);
 router.post('/delete-sanpham/:id', postHandleRemoveSanpham);
-
+//------------------------------------KHACH HANG--------------------------------------------
+router.get('/khachhang', InfoUser)
+router.post('/xem-sanpham/:id', getItemUser)
+router.post('/delete-user/:id', getDeleteUser)
 
 module.exports = router //express default

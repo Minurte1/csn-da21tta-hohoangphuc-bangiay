@@ -31,7 +31,11 @@ const getSize = async (Size) => {
 
     return results;
 }
-
+//--------INFO USER-----------------------
+const getInfoUser = async () => {
+    let [results, fields] = await (await connection).execute('select * from KHACHHANG ')
+    return results;
+}
 // ---------LOAI SAN SPHAM----------------
 const getLoaisanpham = async (idLoaiSP, tenLoaiSP) => {
     const [results, fields] = await (await connection).execute(`INSERT INTO LOAI (MALOAI,name) VALUES (?,?);`, [idLoaiSP, tenLoaiSP],)
@@ -51,20 +55,25 @@ const getAllLoaiSP = async () => {
 
 
 
-const getUserById = async (userID) => {
+// const getUserById = async (userID) => {
 
 
-    const [results, fields] = await (await connection).query('SELECT * FROM User WHERE id = ?', [userID]);
+//     const [results, fields] = await (await connection).query('SELECT * FROM User WHERE id = ?', [userID]);
 
-    return results;
-}
+//     return results;
+// }
+
+
+
+
 module.exports = {
     getAllSanPham,
     getUpdateSanPhamID,
-    getUserById,
+    // getUserById,
     getHang,
     getSize,
     getLoaisanpham,
     getAllLoaiSP,
-    getAllHang
+    getAllHang,
+    getInfoUser
 };

@@ -1,6 +1,7 @@
 // MuaHang.js
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { format } from 'date-fns';
 import axios from 'axios';
 import '../assets/styles/muahang.css'; // Import tệp CSS
 const host = "https://provinces.open-api.vn/api/";
@@ -21,7 +22,7 @@ const MuaHang = () => {
 
 
     });
-
+    const [orderTime, setOrderTime] = useState('');
     const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
@@ -113,9 +114,12 @@ const MuaHang = () => {
 
 
     const sendDataToBackend = async () => {
+        console.log(customerInfo, orderTime, size)
         try {
             const response = await axios.post('http://localhost:3003/api/v1/product', {
                 data: customerInfo,
+                orderTime: orderTime,
+                kichCo: size
             });
             console.log('Success:', response.data);
         } catch (error) {
@@ -130,10 +134,13 @@ const MuaHang = () => {
 
 
     const handleOrder = () => {
+        const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
         console.log("Thông tin người dùng:", customerInfo);
         console.log("Thông tin người dùng:", customerInfo.districts);
-        // Call the printSelectedValues function to log the selected values
 
+        setOrderTime(currentTime);
+        // Call the printSelectedValues function to log the selected values
+        console.log("currentTime after setOrderTime:", currentTime);
         // Additional logic to send customerInfo to the server or perform other actions
 
         // Thông báo đặt hàng thành công

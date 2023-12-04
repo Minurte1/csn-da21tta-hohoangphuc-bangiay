@@ -30,14 +30,23 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
+
 const getProduct = async (req, res) => {
     try {
-        const { name, phoneNumber, address, note, province, districts, ward } = req.body.data;
+        console.log('body', req.body)
+        const { data } = req.body;
+
+        const { orderTime, size, ...customerInfo } = data;
+        console.log(req.body.kichCo)
+
+        console.log(req.body.orderTime)
+
+        const { name, phoneNumber, address, note, province, districts, ward } = customerInfo;
         const getaddress = address + ", " + ward + ", " + districts + ", " + province;
         console.log(getaddress);
         const [results, fields] = await (await connection).query(
             'INSERT INTO KHACHHANG (TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?, ?, ?, ?)',
-            [name, phoneNumber, getaddress, note]
+            [name, phoneNumber, getaddress, note] // Thêm giá trị orderTime vào câu truy vấn
         );
 
         res.json({ message: 'Data received and inserted successfully' });
@@ -46,5 +55,7 @@ const getProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
 
 module.exports = { getAllProduct, getProduct }; // Export as an object
