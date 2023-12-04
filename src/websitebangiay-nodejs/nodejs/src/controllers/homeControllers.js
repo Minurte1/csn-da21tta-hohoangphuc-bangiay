@@ -241,6 +241,7 @@ const getDeleteUser = async (req, res) => {
     console.log('>> productID = ', productID);
 
     const [results, fields] = await (await connection).query('DELETE FROM KHACHHANG WHERE MAKHACHHANG = ?', [productID]);
+
     let getUser = await getInfoUser();
     res.render('InfoUser.ejs', { User: getUser })
 }

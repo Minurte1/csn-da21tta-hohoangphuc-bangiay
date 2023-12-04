@@ -1,5 +1,6 @@
 
 const connection = require('../config/database');
+const { format } = require('date-fns');
 
 const getAllProduct = async (req, res) => {
     try {
@@ -56,16 +57,18 @@ const getDonHang = async (Time, id) => {
 
 const getProduct = async (req, res) => {
     try {
+        const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
         console.log('body', req.body)
         const { data } = req.body;
 
         const { orderTime, size, ...customerInfo } = data;
         console.log(req.body.kichCo)
 
-        console.log(req.body.orderTime)
+        console.log(currentTime)
         console.log(req.body.customerID)
         let id = req.body.customerID
-        let Time = req.body.orderTime
+        let Time = currentTime
+
         const { name, phoneNumber, address, note, province, districts, ward } = customerInfo;
         const getaddress = address + ", " + ward + ", " + districts + ", " + province;
         console.log(getaddress);
@@ -73,9 +76,9 @@ const getProduct = async (req, res) => {
             'INSERT INTO KHACHHANG (MAKHACHHANG,TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?,?, ?, ?, ?)',
             [id, name, phoneNumber, getaddress, note] // Thêm giá trị orderTime vào câu truy vấn
         );
-
-
         await getDonHang(Time, id)
+
+
 
 
 

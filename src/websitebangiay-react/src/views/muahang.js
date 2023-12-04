@@ -46,7 +46,7 @@ const MuaHang = () => {
 
     const generateRandomCustomerID = () => {
         // Lấy thời gian Unix (milliseconds)
-        const randomPart = Math.floor(Math.random() * 10);
+        const randomPart = Math.floor(Math.random() * 100);
         // Số ngẫu nhiên từ 0 đến 999
         return randomPart
     };
@@ -127,7 +127,7 @@ const MuaHang = () => {
         try {
             const response = await axios.post('http://localhost:3003/api/v1/product', {
                 data: customerInfo,
-                orderTime: orderTime,
+
                 kichCo: size,
                 customerID: customerID,
             });
