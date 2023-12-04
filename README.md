@@ -90,3 +90,5 @@ src
 - Điều chỉnh Nodejs cập nhật các Hãng Giày, Loại Giày,..
 # Ngày 3.12.2023
 - Lấy dữ liệu Khách Hàng từ giao diện người dùng về CSDL
+# Ngày 4.12.2023 
+- Hiển thị thông tin khách hàng từ phía server
