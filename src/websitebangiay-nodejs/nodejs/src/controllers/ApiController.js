@@ -1,3 +1,4 @@
+
 const connection = require('../config/database');
 
 const getAllProduct = async (req, res) => {
@@ -30,6 +31,28 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
+const getDonHang = async (Time, id) => {
+    let idKhachHang = id;
+    console.log('time=>', Time)
+    try {
+        // Kiểm tra xem giá trị thời gian có tồn tại không
+        if (!Time) {
+            throw new Error('Giá trị thời gian không hợp lệ');
+        }
+
+        const [results, fields] = await (await connection).query(
+            'INSERT INTO DONHANG (MAKHACHHANG, NGAYDONHANG) VALUES (?, ?)',
+            [idKhachHang, Time]
+        );
+
+        // Thêm phần xử lý phản hồi ở đây nếu cần
+        console.log('Dữ liệu đã nhận và chèn thành công');
+    } catch (error) {
+        console.error('Lỗi:', error);
+        // Thêm phần xử lý lỗi ở đây nếu cần
+        // Nếu bạn muốn trả lỗi về client, bạn có thể sử dụng res.status(500).json({ error: '...' });
+    }
+};
 
 const getProduct = async (req, res) => {
     try {
@@ -40,14 +63,21 @@ const getProduct = async (req, res) => {
         console.log(req.body.kichCo)
 
         console.log(req.body.orderTime)
-
+        console.log(req.body.customerID)
+        let id = req.body.customerID
+        let Time = req.body.orderTime
         const { name, phoneNumber, address, note, province, districts, ward } = customerInfo;
         const getaddress = address + ", " + ward + ", " + districts + ", " + province;
         console.log(getaddress);
         const [results, fields] = await (await connection).query(
-            'INSERT INTO KHACHHANG (TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?, ?, ?, ?)',
-            [name, phoneNumber, getaddress, note] // Thêm giá trị orderTime vào câu truy vấn
+            'INSERT INTO KHACHHANG (MAKHACHHANG,TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?,?, ?, ?, ?)',
+            [id, name, phoneNumber, getaddress, note] // Thêm giá trị orderTime vào câu truy vấn
         );
+
+
+        await getDonHang(Time, id)
+
+
 
         res.json({ message: 'Data received and inserted successfully' });
     } catch (error) {

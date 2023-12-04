@@ -44,6 +44,15 @@ const MuaHang = () => {
 
 
 
+    const generateRandomCustomerID = () => {
+        // Lấy thời gian Unix (milliseconds)
+        const randomPart = Math.floor(Math.random() * 10);
+        // Số ngẫu nhiên từ 0 đến 999
+        return randomPart
+    };
+
+
+    const [customerID, setCustomerID] = useState(generateRandomCustomerID());
 
 
 
@@ -114,12 +123,13 @@ const MuaHang = () => {
 
 
     const sendDataToBackend = async () => {
-        console.log(customerInfo, orderTime, size)
+
         try {
             const response = await axios.post('http://localhost:3003/api/v1/product', {
                 data: customerInfo,
                 orderTime: orderTime,
-                kichCo: size
+                kichCo: size,
+                customerID: customerID,
             });
             console.log('Success:', response.data);
         } catch (error) {
@@ -142,9 +152,9 @@ const MuaHang = () => {
         // Call the printSelectedValues function to log the selected values
         console.log("currentTime after setOrderTime:", currentTime);
         // Additional logic to send customerInfo to the server or perform other actions
-
+        alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
         // Thông báo đặt hàng thành công
-        alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+        // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
     };
 
     const GIA = parseFloat(giay.GIA).toFixed(0);
@@ -284,7 +294,7 @@ const MuaHang = () => {
                             <span>Tổng cộng</span>
                             <span className='muahang-tongcong1'>{GIA * soLuong + 30000} đ</span>
                         </div>
-                        <button type="button" onClick={() => { handleOrder(); sendDataToBackend(); }} className="muahang-button">
+                        <button type="button" onClick={() => { handleOrder(); sendDataToBackend(); generateRandomCustomerID() }} className="muahang-button">
                             Đặt Hàng
                         </button>
 

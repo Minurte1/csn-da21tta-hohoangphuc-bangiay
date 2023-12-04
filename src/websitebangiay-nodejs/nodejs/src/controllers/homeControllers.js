@@ -244,6 +244,10 @@ const getDeleteUser = async (req, res) => {
     let getUser = await getInfoUser();
     res.render('InfoUser.ejs', { User: getUser })
 }
+
+const getAllDonHang = async (req, res) => {
+    res.render('AllDonHang.ejs')
+}
 module.exports = {
     // getAllProduct,
     getABC,
@@ -269,5 +273,9 @@ module.exports = {
     //  --------- USER ------------
     InfoUser,
     getItemUser,
-    getDeleteUser
+    getDeleteUser,
+
+    //  --------- DonHang ------------
+    getAllDonHang
+
 }

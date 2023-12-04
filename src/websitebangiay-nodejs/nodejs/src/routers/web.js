@@ -2,7 +2,7 @@ const express = require('express')
 const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-const { getDeleteUser, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
+const { getAllDonHang, getDeleteUser, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
 var appRoot = require("app-root-path");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -69,5 +69,5 @@ router.post('/delete-sanpham/:id', postHandleRemoveSanpham);
 router.get('/khachhang', InfoUser)
 router.post('/xem-sanpham/:id', getItemUser)
 router.post('/delete-user/:id', getDeleteUser)
-
+router.get('/All-donhang', getAllDonHang)
 module.exports = router //express default
