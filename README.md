@@ -92,3 +92,5 @@ src
 - Lấy dữ liệu Khách Hàng từ giao diện người dùng về CSDL
 # Ngày 4.12.2023 
 - Hiển thị thông tin khách hàng từ phía server
+# Ngày 5.12.2023 
+- Cập nhật nodejs, viết chức năng randomID
