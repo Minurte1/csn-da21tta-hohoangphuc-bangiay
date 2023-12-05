@@ -12,12 +12,15 @@ export const renderShoeItem = (shoe, navigate) => {
 
     // Làm tròn giá đến hai chữ số sau dấu thập phân
     const roundedPrice = parseFloat(shoe.GIA).toFixed(0);
+    var so = parseFloat(roundedPrice);
 
+    const price = so.toLocaleString();
     return (
+
         <li key={shoe.MASP} onClick={() => handleItemClick(shoe, navigate)}>
             <img src={`http://localhost:3003/images/${shoe.description}`} alt={shoe.TENSANPHAM} />
             <h3>{shoe.TENSANPHAM}</h3>
-            <p>Price: {roundedPrice}</p>
+            <p>Price: {price}</p>
         </li>
     );
 };

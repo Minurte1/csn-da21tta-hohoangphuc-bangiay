@@ -46,7 +46,7 @@ const MuaHang = () => {
 
     const generateRandomCustomerID = () => {
         // Lấy thời gian Unix (milliseconds)
-        const randomPart = Math.floor(Math.random() * 100);
+        const randomPart = Math.floor(Math.random() * 100000);
         // Số ngẫu nhiên từ 0 đến 999
         return randomPart
     };

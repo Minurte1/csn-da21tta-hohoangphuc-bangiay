@@ -35,6 +35,7 @@ const getAllProduct = async (req, res) => {
 const getDonHang = async (Time, id) => {
     let idKhachHang = id;
     console.log('time=>', Time)
+
     try {
         // Kiểm tra xem giá trị thời gian có tồn tại không
         if (!Time) {
@@ -55,6 +56,10 @@ const getDonHang = async (Time, id) => {
     }
 };
 
+const generateRandomCustomerID = () => {
+    return Math.floor(Math.random() * 1000) + 1;
+};
+
 const getProduct = async (req, res) => {
     try {
         const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
@@ -66,21 +71,34 @@ const getProduct = async (req, res) => {
 
         console.log(currentTime)
         console.log(req.body.customerID)
-        let id = req.body.customerID
-        let Time = currentTime
+        let id = req.body.customerID;
+        let Time = currentTime;
 
         const { name, phoneNumber, address, note, province, districts, ward } = customerInfo;
         const getaddress = address + ", " + ward + ", " + districts + ", " + province;
-        console.log(getaddress);
-        const [results, fields] = await (await connection).query(
-            'INSERT INTO KHACHHANG (MAKHACHHANG,TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?,?, ?, ?, ?)',
-            [id, name, phoneNumber, getaddress, note] // Thêm giá trị orderTime vào câu truy vấn
-        );
-        await getDonHang(Time, id)
 
+        let isIdUnique = false;
+        let newId;
 
+        // Thử insert dữ liệu và kiểm tra xem có lỗi Duplicate entry hay không
+        do {
+            newId = generateRandomCustomerID();
+            try {
+                const [insertResults, insertFields] = await (await connection).query(
+                    'INSERT INTO KHACHHANG (MAKHACHHANG,TEN, SODIENTHOAI, DIACHI, GHICHU) VALUES (?,?, ?, ?, ?)',
+                    [newId, name, phoneNumber, getaddress, note]
+                );
+                isIdUnique = true; // Nếu không có lỗi thì thoát khỏi vòng lặp
+            } catch (insertError) {
+                // Nếu lỗi không phải Duplicate entry thì throw lỗi
+                if (insertError.code !== 'ER_DUP_ENTRY') {
+                    throw insertError;
+                }
+                // Nếu là Duplicate entry thì làm lại vòng lặp với id mới
+            }
+        } while (!isIdUnique);
 
-
+        await getDonHang(Time, newId);
 
         res.json({ message: 'Data received and inserted successfully' });
     } catch (error) {
