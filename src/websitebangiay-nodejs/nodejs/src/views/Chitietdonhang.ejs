@@ -17,6 +17,7 @@
         <a href="/create">Create Sản Phẩm</a>
         <a href="/khachhang">Thông Tin Khách Hàng</a>
         <a href="/All-donhang">Tất Cả Đơn Hàng</a>
+
     </div>
 
     <div class="list-users">
@@ -24,26 +25,30 @@
         <table>
             <tr>
                 <th>Mã Đơn Hàng </th>
-                <th>Mã Khách Hàng</th>
+                <th>Mã SẢN PHẨM</th>
 
-                <th>Thời gian</th>
+                <th>SỐ LƯỢNG</th>
 
-                <th>Chức Năng</th>
+                <th>THÀNH TIỀN</th>
 
 
             </tr>
-            <% DonHang.forEach(function(DonHang) { %>
+            <% CTDonHang.forEach(function(CTDonHang) { %>
                 <tr>
 
                     <td>
-                        <%= DonHang.MADONHANG %>
+                        <%= CTDonHang.MADONHANG %>
                     </td>
                     <td>
-                        <%= DonHang.MAKHACHHANG %>
+                        <%=CTDonHang.MASP %>
                     </td>
 
                     <td>
-                        <%= DonHang.formattedTime %>
+                        <%=CTDonHang.SOLUONG %>
+                    </td>
+
+                    <td>
+                        <%=CTDonHang.THANHTIEN %>
                     </td>
 
 
@@ -51,23 +56,14 @@
 
 
 
-
-
-                    <td>
-                        <form action="/xem-chiTietdonhang/<%= DonHang.MADONHANG %>" method="post"><button>Xem
-                                thêm</button>
+                    <!-- <td>
+                        <form action="/xem-sanpham/<%= CTDonHang.MAKHACHHANG %>" method="post"><button>Hủy Đơn
+                                Hàng</button>
                         </form>
 
 
 
-                    </td>
-                    <td>
-                        <form action="/DeleteDonhang/<%= DonHang.MADONHANG %>" method="post"><button>Hủy Đơn</button>
-                        </form>
-
-
-
-                    </td>
+                    </td> -->
                     <% }); %>
 
 

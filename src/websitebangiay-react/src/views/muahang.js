@@ -154,9 +154,9 @@ const MuaHang = () => {
         // Call the printSelectedValues function to log the selected values
         console.log("currentTime after setOrderTime:", currentTime);
         // Additional logic to send customerInfo to the server or perform other actions
-        alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
+        // alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
         // Thông báo đặt hàng thành công
-        // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+        alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
 
     };
 

@@ -235,8 +235,46 @@ const InfoUser = async (req, res) => {
     res.render('InfoUser.ejs', { User: getUser })
 }
 const getItemUser = async (req, res) => {
-    res.render('Donhang.ejs');
-}
+    const maKhachHang = req.params.id; // Sử dụng phương thức này nếu mã khách hàng được truyền qua URL
+    console.log(maKhachHang)
+    try {
+        // Lấy mã khách hàng từ request hoặc từ nơi khác
+
+        // Truy vấn MADONHANG từ bảng DONHANG dựa trên MAKHACHHANG
+        const [donHangResults, donHangFields] = await (await connection).query(
+            'SELECT MADONHANG FROM DONHANG WHERE MAKHACHHANG = ?',
+            [maKhachHang]
+        );
+        console.log(donHangResults)
+        // Kiểm tra xem có đơn hàng nào hay không
+        if (donHangResults.length === 0) {
+            res.status(404).json({ error: 'Không tìm thấy đơn hàng cho mã khách hàng này' });
+            return;
+        }
+
+        // Lấy MADONHANG từ kết quả đầu tiên (đơn hàng đầu tiên, có thể có nhiều hơn một đơn hàng)
+        const madonhang = donHangResults[0].MADONHANG;
+        console.log(madonhang)
+        // Truy vấn thông tin chi tiết đơn hàng từ bảng CHITIETDONHANG
+        const [chitietDonHangResults, chitietDonHangFields] = await (await connection).query(
+            'SELECT * FROM CHITIETDONHANG WHERE MADONHANG = ?',
+            [madonhang]
+        );
+
+        // Kiểm tra xem có chi tiết đơn hàng nào hay không
+        if (chitietDonHangResults.length === 0) {
+            res.status(404).json({ error: 'Không tìm thấy chi tiết đơn hàng cho mã đơn hàng này' });
+            return;
+        }
+
+        // Render trang với thông tin chi tiết đơn hàng
+        res.render('Chitietdonhang.ejs', { CTDonHang: chitietDonHangResults });
+    } catch (error) {
+        console.error('Lỗi:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
 const getDeleteUser = async (req, res) => {
     var productID = req.params.id;
     console.log('>> productID = ', productID);
@@ -273,8 +311,14 @@ const getAllDonHang = async (req, res) => {
 
     // console.log(formattedOrders);
 
-    let tenKhachhang = await getInfoUser();
-    res.render('DonHang.ejs', { DonHang: formattedOrders, KhachHang: tenKhachhang })
+
+    res.render('DonHang.ejs', { DonHang: formattedOrders })
+}
+const getAllChiTietDonHang = async (req, res) => {
+    const idDon = req.params.id;
+    const [results, fields] = await (await connection).query('SELECT * FROM CHITIETDONHANG WHERE MADONHANG = ?', [idDon]);
+    console.log(results)
+    res.render('Chitietdonhang.ejs', { CTDonHang: results })
 }
 module.exports = {
     // getAllProduct,
@@ -304,6 +348,7 @@ module.exports = {
     getDeleteUser,
 
     //  --------- DonHang ------------
-    getAllDonHang
+    getAllDonHang,
+    getAllChiTietDonHang
 
 }

@@ -2,7 +2,8 @@ const express = require('express')
 const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-const { getAllDonHang, getDeleteUser, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
+const { DeleteDonHang } = require('../controllers/ApiController')
+const { getAllChiTietDonHang, getAllDonHang, getDeleteUser, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
 var appRoot = require("app-root-path");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -70,4 +71,6 @@ router.get('/khachhang', InfoUser)
 router.post('/xem-sanpham/:id', getItemUser)
 router.post('/delete-user/:id', getDeleteUser)
 router.get('/All-donhang', getAllDonHang)
+router.post('/xem-chiTietdonhang/:id', getAllChiTietDonHang)
+router.post('/DeleteDonhang/:id', DeleteDonHang)
 module.exports = router //express default

@@ -2,7 +2,8 @@
 const connection = require('../config/database');
 const { format } = require('date-fns');
 const { get } = require('../routers/web');
-
+const { getAllDonHang } = require('../controllers/homeControllers')
+const { getDonHang } = require('../services/CRUDServices')
 const getAllProduct = async (req, res) => {
     try {
         const getAllSanPham = async () => {
@@ -33,7 +34,7 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
-const getDonHang = async (Time, id, MaSP, SoluongDaMua, Tongtien) => {
+const getDonHangg = async (Time, id, MaSP, SoluongDaMua, Tongtien) => {
     let idKhachHang = id;
     console.log('time=>', Time)
     let IdDonHang;
@@ -79,7 +80,40 @@ const getDonHang = async (Time, id, MaSP, SoluongDaMua, Tongtien) => {
 };
 
 
+const DeleteDonHang = async (req, res) => {
+    var productID = req.params.id;
+    console.log('>> productID = ', productID);
+    await (await connection).query('DELETE FROM CHITIETDONHANG WHERE MADONHANG = ?', [productID]);
+    const [results, fields] = await (await connection).query('DELETE FROM DONHANG WHERE MADONHANG = ?', [productID]);
 
+    const DonHangne = await getDonHang();
+    const formatOrderTime = (order) => {
+        try {
+            const dateObject = new Date(order.NGAYDONHANG);
+            if (!isNaN(dateObject)) {
+                return format(dateObject, 'yyyy-MM-dd HH:mm:ss');
+            } else {
+                console.error(`Giá trị thời gian không hợp lệ cho đơn hàng ${order.MADONHANG}`);
+                return 'Không hợp lệ';
+            }
+        } catch (error) {
+            console.error(`Lỗi khi chuyển đổi thời gian cho đơn hàng ${order.MADONHANG}:`, error.message);
+            return 'Không hợp lệ';
+        }
+    };
+
+    // Sử dụng hàm formatOrderTime trong quá trình chuyển đổi mảng đơn hàng
+    const formattedOrders = DonHangne.map((order) => ({
+        ...order,
+        formattedTime: formatOrderTime(order),
+    }));
+
+    // console.log(formattedOrders);
+
+
+    res.render('DonHang.ejs', { DonHang: formattedOrders })
+
+}
 
 
 const getChiTietDonHang = async (IdDonHang, MaSP, SoluongDaMua, Tongtien) => {
@@ -133,7 +167,7 @@ const getProduct = async (req, res) => {
             }
         } while (!isIdUnique);
 
-        await getDonHang(Time, newId, MaSP, SoluongDaMua, Tongtien);
+        await getDonHangg(Time, newId, MaSP, SoluongDaMua, Tongtien);
 
         res.json({ message: 'Data received and inserted successfully' });
     } catch (error) {
@@ -144,4 +178,4 @@ const getProduct = async (req, res) => {
 
 
 
-module.exports = { getAllProduct, getProduct }; // Export as an object
+module.exports = { getAllProduct, getProduct, DeleteDonHang }; // Export as an object
