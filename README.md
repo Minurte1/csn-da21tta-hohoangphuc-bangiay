@@ -95,3 +95,4 @@ src
 # Ngày 5.12.2023 
 - Cập nhật nodejs, viết chức năng randomID
 - Viết thêm lấy dữ liệu đến chi tiết đơn hàng
+- Sửa lỗi Đơn Hàng
