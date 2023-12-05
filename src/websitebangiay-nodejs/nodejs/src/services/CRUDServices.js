@@ -63,7 +63,10 @@ const getAllLoaiSP = async () => {
 //     return results;
 // }
 
-
+const getDonHang = async (req, res) => {
+    let [results, fields] = await (await connection).execute('select * from DONHANG ')
+    return results;
+}
 
 
 module.exports = {
@@ -75,5 +78,6 @@ module.exports = {
     getLoaisanpham,
     getAllLoaiSP,
     getAllHang,
-    getInfoUser
+    getInfoUser,
+    getDonHang
 };

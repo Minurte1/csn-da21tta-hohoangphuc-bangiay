@@ -127,9 +127,11 @@ const MuaHang = () => {
         try {
             const response = await axios.post('http://localhost:3003/api/v1/product', {
                 data: customerInfo,
-
+                IdSP: giay.MASP,
                 kichCo: size,
                 customerID: customerID,
+                SoluongDaMua: soLuong,
+                Tongtien: tongTien,
             });
             console.log('Success:', response.data);
         } catch (error) {
@@ -147,7 +149,7 @@ const MuaHang = () => {
         const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
         console.log("Thông tin người dùng:", customerInfo);
         console.log("Thông tin người dùng:", customerInfo.districts);
-
+        console.log(giay.MASP)
         setOrderTime(currentTime);
         // Call the printSelectedValues function to log the selected values
         console.log("currentTime after setOrderTime:", currentTime);
@@ -155,10 +157,11 @@ const MuaHang = () => {
         alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
         // Thông báo đặt hàng thành công
         // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+
     };
 
     const GIA = parseFloat(giay.GIA).toFixed(0);
-
+    const tongTien = GIA * soLuong + 30000;
     return (
 
         <div className="muahang-container">

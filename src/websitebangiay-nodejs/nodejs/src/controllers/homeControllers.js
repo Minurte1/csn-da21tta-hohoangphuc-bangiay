@@ -1,6 +1,7 @@
 const connection = require('../config/database');
 const { get } = require('../routers/web');
-const { getInfoUser, getAllSanPham, getAllHang, getUpdateSanPhamID, getAllLoaiSP } = require('../services/CRUDServices');
+const { getDonHang, getInfoUser, getAllSanPham, getAllHang, getUpdateSanPhamID, getAllLoaiSP } = require('../services/CRUDServices');
+const { format } = require('date-fns');
 
 
 const getUpdatePage = async (req, res) => {
@@ -247,7 +248,33 @@ const getDeleteUser = async (req, res) => {
 }
 
 const getAllDonHang = async (req, res) => {
-    res.render('AllDonHang.ejs')
+
+    const DonHangne = await getDonHang();
+    const formatOrderTime = (order) => {
+        try {
+            const dateObject = new Date(order.NGAYDONHANG);
+            if (!isNaN(dateObject)) {
+                return format(dateObject, 'yyyy-MM-dd HH:mm:ss');
+            } else {
+                console.error(`Giá trị thời gian không hợp lệ cho đơn hàng ${order.MADONHANG}`);
+                return 'Không hợp lệ';
+            }
+        } catch (error) {
+            console.error(`Lỗi khi chuyển đổi thời gian cho đơn hàng ${order.MADONHANG}:`, error.message);
+            return 'Không hợp lệ';
+        }
+    };
+
+    // Sử dụng hàm formatOrderTime trong quá trình chuyển đổi mảng đơn hàng
+    const formattedOrders = DonHangne.map((order) => ({
+        ...order,
+        formattedTime: formatOrderTime(order),
+    }));
+
+    // console.log(formattedOrders);
+
+    let tenKhachhang = await getInfoUser();
+    res.render('DonHang.ejs', { DonHang: formattedOrders, KhachHang: tenKhachhang })
 }
 module.exports = {
     // getAllProduct,

@@ -1,6 +1,7 @@
 
 const connection = require('../config/database');
 const { format } = require('date-fns');
+const { get } = require('../routers/web');
 
 const getAllProduct = async (req, res) => {
     try {
@@ -32,36 +33,68 @@ const getAllProduct = async (req, res) => {
         });
     }
 };
-const getDonHang = async (Time, id) => {
+const getDonHang = async (Time, id, MaSP, SoluongDaMua, Tongtien) => {
     let idKhachHang = id;
     console.log('time=>', Time)
-
+    let IdDonHang;
+    let isIdUnique = false;
     try {
         // Kiểm tra xem giá trị thời gian có tồn tại không
         if (!Time) {
             throw new Error('Giá trị thời gian không hợp lệ');
         }
 
-        const [results, fields] = await (await connection).query(
-            'INSERT INTO DONHANG (MAKHACHHANG, NGAYDONHANG) VALUES (?, ?)',
-            [idKhachHang, Time]
-        );
+        do {
+            IdDonHang = generateRandomCustomerID();
+            try {
+                console.log(IdDonHang)
+                const [results, fields] = await (await connection).query(
+                    'INSERT INTO DONHANG (MADONHANG, MAKHACHHANG, NGAYDONHANG) VALUES (?,?,?)',
+                    [IdDonHang, idKhachHang, Time]);
 
-        // Thêm phần xử lý phản hồi ở đây nếu cần
+                isIdUnique = true; // Nếu không có lỗi thì thoát khỏi vòng lặp
+                if (isIdUnique = true) {
+                    await getChiTietDonHang(IdDonHang, MaSP, SoluongDaMua, Tongtien);
+                }
+            } catch (insertError) {
+                // Nếu lỗi không phải Duplicate entry thì throw lỗi
+                if (insertError.code !== 'ER_DUP_ENTRY') {
+                    throw insertError;
+                }
+                // Nếu là Duplicate entry thì làm lại vòng lặp với id mới
+
+            }
+        } while (!isIdUnique);
+
+
         console.log('Dữ liệu đã nhận và chèn thành công');
+
     } catch (error) {
         console.error('Lỗi:', error);
         // Thêm phần xử lý lỗi ở đây nếu cần
         // Nếu bạn muốn trả lỗi về client, bạn có thể sử dụng res.status(500).json({ error: '...' });
     }
+
+
 };
 
+
+
+
+
+const getChiTietDonHang = async (IdDonHang, MaSP, SoluongDaMua, Tongtien) => {
+    const [results, fields] = await (await connection).query(
+        'INSERT INTO CHITIETDONHANG (MADONHANG,MASP,SOLUONG,THANHTIEN) VALUES (?,?,?,?)',
+        [IdDonHang, MaSP, SoluongDaMua, Tongtien]);
+
+}
 const generateRandomCustomerID = () => {
     return Math.floor(Math.random() * 1000) + 1;
 };
 
 const getProduct = async (req, res) => {
     try {
+
         const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
         console.log('body', req.body)
         const { data } = req.body;
@@ -73,7 +106,9 @@ const getProduct = async (req, res) => {
         console.log(req.body.customerID)
         let id = req.body.customerID;
         let Time = currentTime;
-
+        let MaSP = req.body.IdSP
+        let SoluongDaMua = req.body.SoluongDaMua;
+        let Tongtien = req.body.Tongtien
         const { name, phoneNumber, address, note, province, districts, ward } = customerInfo;
         const getaddress = address + ", " + ward + ", " + districts + ", " + province;
 
@@ -98,7 +133,7 @@ const getProduct = async (req, res) => {
             }
         } while (!isIdUnique);
 
-        await getDonHang(Time, newId);
+        await getDonHang(Time, newId, MaSP, SoluongDaMua, Tongtien);
 
         res.json({ message: 'Data received and inserted successfully' });
     } catch (error) {
