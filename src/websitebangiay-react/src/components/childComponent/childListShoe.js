@@ -19,8 +19,8 @@ export const renderShoeItem = (shoe, navigate) => {
 
         <li key={shoe.MASP} onClick={() => handleItemClick(shoe, navigate)}>
             <img src={`http://localhost:3003/images/${shoe.description}`} alt={shoe.TENSANPHAM} />
-            <h3>{shoe.TENSANPHAM}</h3>
-            <p>Price: {price}</p>
+            <p id='CLS-tensp'>{shoe.TENSANPHAM}</p>
+            <p>{price}đ</p>
         </li>
     );
 };

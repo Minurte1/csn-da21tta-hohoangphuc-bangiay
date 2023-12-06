@@ -20,6 +20,13 @@
     justify-content: space-around;
 }
 
+#CLS-tensp {
+    font-weight: normal;
+    font-size: 14px;
+    z-index: 5;
+
+}
+
 .shoe-list li {
     border: 1px solid #ddd;
     border-radius: 8px;
