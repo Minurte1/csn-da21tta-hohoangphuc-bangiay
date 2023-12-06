@@ -67,11 +67,9 @@ const getDonHang = async (req, res) => {
     let [results, fields] = await (await connection).execute('select * from DONHANG ')
     return results;
 }
-const getAllChiTietDonHang = async (req, res) => {
-    const idSanpham = req.params.id;
-    const [results, fields] = await (await connection).query('SELECT * FROM SANPHAM WHERE MASP = ?', [idSanpham]);
-    return results;
-}
+
+
+
 
 module.exports = {
     getAllSanPham,

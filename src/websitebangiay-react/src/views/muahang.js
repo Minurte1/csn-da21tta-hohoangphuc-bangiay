@@ -151,12 +151,20 @@ const MuaHang = () => {
         console.log("Thông tin người dùng:", customerInfo.districts);
         console.log(giay.MASP)
         setOrderTime(currentTime);
-        // Call the printSelectedValues function to log the selected values
-        console.log("currentTime after setOrderTime:", currentTime);
-        // Additional logic to send customerInfo to the server or perform other actions
-        // alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
-        // Thông báo đặt hàng thành công
-        alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+        if ((!customerInfo.name) || (!customerInfo.address) || (!customerInfo.phoneNumber)) {
+            alert('Bạn chưa nhập đủ thông tin')
+
+        } else {
+            // Call the printSelectedValues function to log the selected values
+            console.log("currentTime after setOrderTime:", currentTime);
+            // Additional logic to send customerInfo to the server or perform other actions
+            alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
+            sendDataToBackend();
+            // Thông báo đặt hàng thành công
+            // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+
+        }
+
 
     };
 
@@ -297,7 +305,7 @@ const MuaHang = () => {
                             <span>Tổng cộng</span>
                             <span className='muahang-tongcong1'>{GIA * soLuong + 30000} đ</span>
                         </div>
-                        <button type="button" onClick={() => { handleOrder(); sendDataToBackend(); generateRandomCustomerID() }} className="muahang-button">
+                        <button type="button" onClick={() => { handleOrder(); generateRandomCustomerID() }} className="muahang-button">
                             Đặt Hàng
                         </button>
 

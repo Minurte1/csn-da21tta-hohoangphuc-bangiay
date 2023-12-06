@@ -8,6 +8,8 @@ const ThongTinChiTietGiay = () => {
     const [selectedSize, setSelectedSize] = useState(null);
     const navigate = useNavigate();
     console.log(state.MASP)
+
+    
     let handleClickMuaHang = (event) => {
         if (selectedSize == null) {
             alert('Vui lòng chọn Size giày');
