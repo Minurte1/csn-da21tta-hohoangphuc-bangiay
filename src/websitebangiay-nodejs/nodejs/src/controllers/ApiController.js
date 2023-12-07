@@ -3,7 +3,8 @@ const connection = require('../config/database');
 const { format } = require('date-fns');
 const { get } = require('../routers/web');
 const { getAllDonHang } = require('../controllers/homeControllers')
-const { getDonHang } = require('../services/CRUDServices')
+const { getDonHang, getInfoUser } = require('../services/CRUDServices')
+
 const getAllProduct = async (req, res) => {
     try {
         const getAllSanPham = async () => {
@@ -125,6 +126,20 @@ const getChiTietDonHang = async (IdDonHang, MaSP, SoluongDaMua, Tongtien) => {
 const generateRandomCustomerID = () => {
     return Math.floor(Math.random() * 1000) + 1;
 };
+const getDeleteUser = async (req, res) => {
+    try {
+        var productID = req.params.id;
+        console.log('>> productID = ', productID);
+
+        const [results, fields] = await (await connection).query('DELETE FROM KHACHHANG WHERE MAKHACHHANG = ?', [productID]);
+
+        let getUser = await getInfoUser();
+        res.render('InfoUser.ejs', { User: getUser });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).send('Vui Lòng Xóa Dữ Liệu Ở Đơn Hàng Trước !');
+    }
+}
 
 const getProduct = async (req, res) => {
     try {
@@ -178,4 +193,4 @@ const getProduct = async (req, res) => {
 
 
 
-module.exports = { getAllProduct, getProduct, DeleteDonHang }; // Export as an object
+module.exports = { getAllProduct, getProduct, DeleteDonHang, getDeleteUser }; // Export as an object

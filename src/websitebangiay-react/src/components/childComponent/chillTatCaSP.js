@@ -42,6 +42,7 @@ export const AllShoeList = ({ shoes }) => {
         <div className="shoe-list">
             <h2 className='tieude' id='tieude_tatcasp'>Tất Cả Sản Phẩm</h2>
             <input
+                className='input-timSP'
                 type="text"
                 placeholder="Tìm kiếm sản phẩm..."
                 value={searchTerm}

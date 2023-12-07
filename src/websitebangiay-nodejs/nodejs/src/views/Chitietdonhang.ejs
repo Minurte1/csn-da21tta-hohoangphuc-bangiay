@@ -15,11 +15,65 @@
     <div class="topnav">
         <a class="active" href="/">Home</a>
         <a href="/create">Create Sản Phẩm</a>
-        <a href="/khachhang">Thông Tin Khách Hàng</a>
+        <!-- <a href="/khachhang">Thông Tin Khách Hàng</a> -->
         <a href="/All-donhang">Tất Cả Đơn Hàng</a>
 
     </div>
+    <div class="list-users">
 
+        <table>
+            <tr>
+                <th>Mã Khách Hàng </th>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+
+                <th>Ghi chú</th>
+
+            </tr>
+            <% User.forEach(function(User) { %>
+                <tr>
+
+                    <td>
+                        <%= User.MAKHACHHANG %>
+                    </td>
+                    <td>
+                        <%= User.TEN %>
+                    </td>
+                    <td>
+                        <%= User.DIACHI %>
+                    </td>
+                    <td>
+                        <%=User.SODIENTHOAI %>
+                    </td>
+                    <td>
+                        <%=User.GHICHU %>
+                    </td>
+
+
+
+
+
+
+
+                    <td>
+                        <form action="/xem-sanpham/<%= User.MAKHACHHANG  %>" method="post"><button>Đơn Hàng chi
+                                tiết</button>
+                        </form>
+                        <form action="/delete-user/<%= User.MAKHACHHANG %>" method="post"><button>Xóa</button>
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                <% }); %>
+
+
+
+        </table>
+
+    </div>
     <div class="list-users">
 
         <table>
@@ -80,6 +134,7 @@
         </table>
 
     </div>
+
 
 </body>
 

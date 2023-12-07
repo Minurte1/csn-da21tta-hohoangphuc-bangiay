@@ -275,15 +275,7 @@ const getItemUser = async (req, res) => {
     }
 };
 
-const getDeleteUser = async (req, res) => {
-    var productID = req.params.id;
-    console.log('>> productID = ', productID);
 
-    const [results, fields] = await (await connection).query('DELETE FROM KHACHHANG WHERE MAKHACHHANG = ?', [productID]);
-
-    let getUser = await getInfoUser();
-    res.render('InfoUser.ejs', { User: getUser })
-}
 
 const getAllDonHang = async (req, res) => {
 
@@ -318,7 +310,50 @@ const getAllChiTietDonHang = async (req, res) => {
     const idDon = req.params.id;
     const [results, fields] = await (await connection).query('SELECT * FROM CHITIETDONHANG WHERE MADONHANG = ?', [idDon]);
     console.log(results)
-    res.render('Chitietdonhang.ejs', { CTDonHang: results })
+
+
+    try {
+        // Lấy mã khách hàng từ request hoặc từ nơi khác
+
+        // Truy vấn MADONHANG từ bảng DONHANG dựa trên MAKHACHHANG
+        const [donHangResults, donHangFields] = await (await connection).query(
+            'SELECT MADONHANG FROM DONHANG WHERE MADONHANG = ?',
+            [idDon]
+        );
+        console.log('=>CHECHDONHANG', donHangResults)
+        // Kiểm tra xem có đơn hàng nào hay không
+        if (donHangResults.length === 0) {
+            res.status(404).json({ error: 'Không tìm thấy đơn hàng cho mã khách hàng này' });
+            return;
+        }
+
+        // Lấy MADONHANG từ kết quả đầu tiên (đơn hàng đầu tiên, có thể có nhiều hơn một đơn hàng)
+        const maDonHang = donHangResults[0].MADONHANG;
+        console.log(maDonHang)
+
+        const [chitietDonHangResults, chitietDonHangFields] = await (await connection).query(
+            'SELECT * FROM DONHANG WHERE MADONHANG = ?',
+            [maDonHang]
+        );
+        console.log(chitietDonHangResults)
+        if (chitietDonHangResults.length === 0) {
+            res.status(404).json({ error: 'Không tìm thấy chi tiết đơn hàng cho mã đơn hàng này' });
+            return;
+        }
+        const maKhachHang = chitietDonHangResults[0].MAKHACHHANG;
+        console.log(maKhachHang)
+        const [Khachhang, KhachhangFields] = await (await connection).query(
+            'SELECT * FROM KHACHHANG WHERE MAKHACHHANG = ?',
+            [maKhachHang]
+        );
+
+        res.render('Chitietdonhang.ejs', { CTDonHang: results, User: Khachhang })
+    } catch (error) {
+        console.error('Lỗi:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+
 }
 module.exports = {
     // getAllProduct,
@@ -345,7 +380,7 @@ module.exports = {
     //  --------- USER ------------
     InfoUser,
     getItemUser,
-    getDeleteUser,
+
 
     //  --------- DonHang ------------
     getAllDonHang,
