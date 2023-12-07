@@ -9,7 +9,17 @@ const ThongTinChiTietGiay = () => {
     const navigate = useNavigate();
     console.log(state.MASP)
 
-    
+
+
+
+
+
+
+
+
+
+
+
     let handleClickMuaHang = (event) => {
         if (selectedSize == null) {
             alert('Vui lòng chọn Size giày');
@@ -38,6 +48,9 @@ const ThongTinChiTietGiay = () => {
     };
     const GIA = parseFloat(state.GIA).toFixed(0);
 
+    var GIASP = parseFloat(GIA);
+
+    const price = GIASP.toLocaleString();
     return (
         <>
             <div className="container">
@@ -48,7 +61,7 @@ const ThongTinChiTietGiay = () => {
                         </div>
                         <div className='product-h3'>
                             <h3 className='h3'> Giày {state.TENSANPHAM}</h3>
-                            <p className='product-price'>${GIA}</p>
+                            <p className='product-price'>{price}đ</p>
                             <div className='size'>
                                 <p className='size-p'>Size</p>
                                 {['37', '38', '39', '40'].map(size => (
@@ -75,20 +88,21 @@ const ThongTinChiTietGiay = () => {
                                 </button>
 
                             </div>
+                            <div className='container-thongtinsanpham'>
+                                <div className='container-thongtinsanpham_mota' >
+                                    <h4>Mô tả sản phẩm</h4>
+                                    <p className='thongtinsp'>{state.THONGTINSANPHAM}</p>
+                                </div>
+
+
+                            </div>
                         </div>
                     </form>
 
                 </div>
             </div>
             <hr></hr>
-            <div className='container-thongtinsanpham'>
-                <div className='container-thongtinsanpham_mota' >
-                    <h4>Mô tả sản phẩm</h4>
-                    <p>{state.THONGTINSANPHAM}</p>
-                </div>
 
-
-            </div>
         </>
     );
 };

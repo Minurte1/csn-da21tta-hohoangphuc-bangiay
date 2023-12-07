@@ -3,7 +3,7 @@ import MyNavbar from "../components/NavbarhomePage";
 import CarouselHomepage from "../components/CarousehomePagel";
 import ListShoe from "../components/listShoe";
 import ImfoHomepage from "../components/imfomationHomepage"
-import ChildLists from "../components/listShoeSeal"
+import ListShoeSeal from "../components/listShoeSeal"
 import Footer from "../components/foolterHomepage";
 import AppCer from "../api/api";
 
@@ -20,7 +20,7 @@ class HomePage extends React.Component {
                 <CarouselHomepage />
                 < ImfoHomepage></ImfoHomepage>
                 < ListShoe></ListShoe>
-                <ChildLists></ChildLists>
+                <ListShoeSeal></ListShoeSeal>
                 <Footer></Footer>
 
             </>

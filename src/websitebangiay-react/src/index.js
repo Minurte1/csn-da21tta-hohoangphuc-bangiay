@@ -12,6 +12,9 @@ import MuaHang from './views/muahang';
 import ThongTinChiTietGiaySeal from './views/thongtinchitietgiayseal';
 import MuaHangSeal from './views/muahangseal';
 import AdminLogin from './views/loginAdmin';
+import ListShoe from './components/listShoe';
+import TuyenDungPage from './views/TuyenDung';
+import AllSP from '../src/views/TatCaSanPham'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -27,11 +30,13 @@ root.render(
             </>
           }
         />
-        <Route path="/thongtinchitietgiay/:shoes" element={<><MyNavbar /><ThongTinChiTietGiay />    <Footer /></>} />
+        <Route path="/thongtinchitietgiay/:shoes" element={<><MyNavbar /><ThongTinChiTietGiay /> < ListShoe></ListShoe>   <Footer /></>} />
         <Route path="/thongtinchitietgiayseal/:shoes" element={<><MyNavbar /><ThongTinChiTietGiaySeal />    <Footer /></>} />
-        <Route path="/muahang/:id" element={<MuaHang></MuaHang>} />
+        <Route path="/muahang/:id" element={<><MyNavbar></MyNavbar><MuaHang></MuaHang> <Footer></Footer></>} />
         <Route path="/muahangseal/:id" element={<MuaHangSeal></MuaHangSeal>} />
         <Route path="/admin" element={<AdminLogin></AdminLogin>} />
+        <Route path="/tuyendung" element={<> <TuyenDungPage></TuyenDungPage></>} />
+        <Route path="/tatca-sanpham" element={<><AllSP></AllSP></>} />
       </Routes>
     </Router>
 

@@ -12,6 +12,17 @@
     color: black;
 }
 
+#tenSP {
+    font-weight: normal;
+    font-size: 14px;
+    z-index: 20;
+}
+
+#shoe-listseal_tieude {
+
+    text-align: center;
+}
+
 .shoe-list ul {
     list-style: none;
     padding: 0;
@@ -36,9 +47,7 @@
     /* Phóng to khi hover */
 }
 
-.list-shoe_h2 {
-    text-align: center;
-}
+
 
 .shoe-list img {
     max-width: 100%;

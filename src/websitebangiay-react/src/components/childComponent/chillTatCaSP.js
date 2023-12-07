@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./listShoe.css";
+import "../childComponent/chillTatCaSP.css"
 
 export const handleItemClick = (shoe, navigate) => {
     console.log("Item clicked:", shoe);
@@ -16,7 +17,6 @@ export const renderShoeItem = (shoe, navigate) => {
 
     const price = so.toLocaleString();
     return (
-
         <li key={shoe.MASP} onClick={() => handleItemClick(shoe, navigate)}>
             <img src={`http://localhost:3003/images/${shoe.description}`} alt={shoe.TENSANPHAM} />
             <p id='CLS-tensp'>{shoe.TENSANPHAM}</p>
@@ -25,22 +25,31 @@ export const renderShoeItem = (shoe, navigate) => {
     );
 };
 
-export const ShoeList = ({ shoes }) => {
+export const AllShoeList = ({ shoes }) => {
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
 
     if (!shoes || !shoes.data || !Array.isArray(shoes.data) || shoes.data.length === 0) {
         return <div>No shoes available</div>;
     }
 
-    // Slice the array to get only the first 10 items
-    const firstTenShoes = shoes.data.slice(0, 10);
+    // Filter the list based on the search term
+    const filteredShoes = shoes.data.filter(shoe =>
+        shoe.TENSANPHAM.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="shoe-list">
-            <h2 className='tieude'>Sản Phẩm Mới Nhất</h2>
+            <h2 className='tieude' id='tieude_tatcasp'>Tất Cả Sản Phẩm</h2>
+            <input
+                type="text"
+                placeholder="Tìm kiếm sản phẩm..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <hr></hr>
             <ul>
-                {firstTenShoes.map((shoe) => renderShoeItem(shoe, navigate))}
+                {filteredShoes.map((shoe) => renderShoeItem(shoe, navigate))}
             </ul>
             <hr></hr>
         </div>

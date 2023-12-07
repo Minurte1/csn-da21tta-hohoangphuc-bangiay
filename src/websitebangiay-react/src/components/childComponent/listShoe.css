@@ -12,6 +12,11 @@
     color: black;
 }
 
+.tieude {
+    margin-top: 20px;
+    text-align: center;
+}
+
 .shoe-list ul {
     list-style: none;
     padding: 0;

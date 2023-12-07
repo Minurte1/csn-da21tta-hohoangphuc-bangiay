@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoeListSeal } from '../components/childComponent/childListSeal'
+import { AllShoeList } from '../components/childComponent/chillTatCaSP';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 // const shoesDatas = [
@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 //     // Add more shoes as needed
 // ];
 
-function ListShoeSeal() {
+function ListShoe() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -49,9 +49,9 @@ function ListShoeSeal() {
 
     return (
         <div className="App">
-            <ShoeListSeal shoes={data} />
+            <AllShoeList shoes={data} />
         </div>
     );
 }
 
-export default ListShoeSeal;
+export default ListShoe;
