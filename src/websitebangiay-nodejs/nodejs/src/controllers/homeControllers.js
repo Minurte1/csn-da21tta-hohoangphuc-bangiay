@@ -118,8 +118,12 @@ const postCreateSanpham = async (req, res) => {
         const [results, fields] = await (await connection).execute(`INSERT INTO SANPHAM (TENSANPHAM,TENHANG,GIA,description,MALOAI,GIATRI,SOLUONG,THONGTINSANPHAM) VALUES (?,?,?,?,?,?,?,?);`, [tenSanpham, Tenhang, Gia, req.file.filename, Loaisanpham, Size, Soluong, thongtinsanpham],
 
         );
+
         console.log(">>results ", results);
-        res.redirect("/");
+        let getHang = await getAllHang();
+        let AllLoaiSPP = await getAllLoaiSP()
+        res.render('create.ejs', { AllHangSP: getHang, AllLoaiSP: AllLoaiSPP });
+        // res.redirect("/");
     }
 
     catch (error) {
