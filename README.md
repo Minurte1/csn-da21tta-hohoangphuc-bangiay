@@ -98,3 +98,7 @@ src
 - Sửa lỗi Đơn Hàng
 # Ngày 6.12.2023
 - Cập nhật nội dung sản phẩm
+# Ngày 7.12.2023 
+- Viết chức năng tìm kiếm sản phẩm
+- Cập nhật lại Server
+- Thêm sản phẩm giày cho website
