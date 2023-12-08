@@ -102,3 +102,5 @@ src
 - Viết chức năng tìm kiếm sản phẩm
 - Cập nhật lại Server
 - Thêm sản phẩm giày cho website
+# Ngày 8.12.2023 
+- Viết chức năng search cho sản phẩm dành cho nữ
