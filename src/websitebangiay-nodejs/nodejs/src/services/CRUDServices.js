@@ -9,14 +9,14 @@ const getAllHang = async () => {
     let [results, fields] = await (await connection).execute('select * from HANG ')
     return results;
 }
-const getUpdateSanPhamID = async (MASP, tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG) => {
-
+const getUpdateSanPhamID = async (MASP, tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG, image) => {
+    console.log('hinhne2', image)
     console.log('teensp', tenSanpham)
     let [results, fields] = await (await connection).query(
         `UPDATE SANPHAM 
-         SET TENSANPHAM = ?, TENHANG = ?, GIA = ?, description = ?, MALOAI = ?, GIATRI = ?, SOLUONG = ? 
+         SET TENSANPHAM = ?, TENHANG = ?, GIA = ?, description = ?, MALOAI = ?, GIATRI = ?, SOLUONG = ?, THONGTINSANPHAM = ? 
          WHERE MASP = ?;`,
-        [tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG, MASP]
+        [tenSanpham, TENHANG, GIA, image, MALOAI, SIZE, SOLUONG, MOTA, MASP]
     );
     return results;
 }

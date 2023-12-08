@@ -20,7 +20,7 @@ const getChonSanPham = async (req, res) => {
     let Sanpham = results && results.length > 0 ? results[0] : {};
 
     let allSanpham = await getAllSanPham();
-    res.render('edit', { SanphamEdit: Sanpham, AllSanpham: allSanpham })
+    res.render('edit.ejs', { SanphamEdit: Sanpham, AllSanpham: allSanpham })
 }
 // Đảm bảo route được đăng ký trước middleware `getAllProduct`
 
@@ -189,14 +189,15 @@ const getUpdateSanpham = async (req, res) => {
     var tenSanpham = req.body.TENSANPHAM;
     var TENHANG = req.body.TENHANG;
     var GIA = req.body.GIA;
-    var MOTA = req.body.MOTA;
+    var MOTA = req.body.thongtinsanpham;
     var MALOAI = req.body.MALOAI;
     var SIZE = req.body.SIZE;
     var SOLUONG = req.body.SOLUONG;
 
-
-
-    await getUpdateSanPhamID(MASP, tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG);
+    var image = req.file.filename
+    console.log('check MOTA', MOTA)
+    console.log('hinh ne', image)
+    await getUpdateSanPhamID(MASP, tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG, image);
 
 
 

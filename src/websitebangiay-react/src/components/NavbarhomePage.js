@@ -21,9 +21,10 @@ const MyNavbar = () => {
                         PhucShoe
                     </a>
                     <div className="ml-auto" >
+                        <a href="/" className='nav-item nav-item1'>Giới Thiệu</a>
                         <a href="/nu-sanpham" className='nav-item nav-item1'>Nữ</a>
-                        <a href="/about" className='nav-item nav-item2'>Nam</a>
-                        <a href="/contact" className='nav-item'>Trẻ em</a>
+                        <a href="/nam-sanpham" className='nav-item nav-item2'>Nam</a>
+                        {/* <a href="/contact" className='nav-item'>Trẻ em</a> */}
                         <a href="/tatca-sanpham" className='nav-item nav-item4'>Tất Cả</a>
 
                     </div>

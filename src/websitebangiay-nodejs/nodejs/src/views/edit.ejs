@@ -19,7 +19,7 @@
     </div>
 
     <div class="form">
-        <form action="/update-sanpham" method="post">
+        <form action="/update-sanpham" enctype="multipart/form-data" method="post">
             <fieldset>
                 <legend>Update new users</legend>
 
@@ -57,12 +57,19 @@
                     <label for="SOLUONG">SỐ LƯỢNG</label>
                     <input type="text" name="SOLUONG" value="<%= SanphamEdit.SOLUONG %>">
                 </div>
-
-                <div>
-                    <label for="profile_pic">Avatar: </label>
-                    <input type="file" name="profile_pic" value="<%= SanphamEdit.description %>" />
+                <div class="input-group input-groupcity">
+                    <label for="">Thông tin chi tiết mô tả sản phẩm</label>
+                    <input type="text" name="thongtinsanpham" id="thongtinsanpham"
+                        value="<%=SanphamEdit.THONGTINSANPHAM %>">
                 </div>
 
+                <div>
+                    <label for="">Avatar: </label>
+                    <input type="file" name="profile_pic" value="<%= SanphamEdit.description %>" />
+                </div>
+                <td>
+                    <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data"></form>
+                </td>
                 <div class="button">
                     <button> Adđ New User</button>
                 </div>

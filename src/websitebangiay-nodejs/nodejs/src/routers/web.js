@@ -62,7 +62,7 @@ router.post('/delete-hangsanphamfr/:id', getDeleteHangSP)
 
 router.post('/chon-sanpham/:id', getChonSanPham)
 // router.get('/update/:id', getUpdatePage)
-router.post('/update-sanpham', getUpdateSanpham)
+router.post('/update-sanpham', upload.single("profile_pic"), getUpdateSanpham)
 router.post('/create-Sanpham', upload.single("profile_pic"), postCreateSanpham);
 // router.post('/delete-user/:id', postDeleteUser);
 router.post('/delete-sanpham/:id', postHandleRemoveSanpham);

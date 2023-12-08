@@ -3,14 +3,14 @@ import React from 'react';
 import MyNavbar from '../components/NavbarhomePage';
 // import Footer from '../components/foolterHomepage';
 // import AllShoeList from '../components/TatCaSP';
-import ListSpNu from '../components/SPNu';
+import ListSpNam from '../components/SPNam';
 const SPNu = () => {
 
 
     return (
         <>
             <MyNavbar></MyNavbar>
-            <ListSpNu></ListSpNu>
+            <ListSpNam></ListSpNam>
             {/* <AllShoeList></AllShoeList>
 
             <Footer></Footer> */}
