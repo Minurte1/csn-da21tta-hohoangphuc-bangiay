@@ -15,6 +15,7 @@ import AdminLogin from './views/loginAdmin';
 import ListShoe from './components/listShoe';
 import TuyenDungPage from './views/TuyenDung';
 import AllSP from '../src/views/TatCaSanPham'
+import SPNu from './views/SpNu';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -37,6 +38,7 @@ root.render(
         <Route path="/admin" element={<AdminLogin></AdminLogin>} />
         <Route path="/tuyendung" element={<> <TuyenDungPage></TuyenDungPage></>} />
         <Route path="/tatca-sanpham" element={<><AllSP></AllSP></>} />
+        <Route path="/nu-sanpham" element={<><SPNu></SPNu></>} />
       </Routes>
     </Router>
 
