@@ -105,3 +105,5 @@ src
 # Ngày 8.12.2023 
 - Viết chức năng search cho sản phẩm dành cho nữ
 - Viết chức năng search cho sản phẩm dành cho nam
+# Ngày 9.12.2023
+- Viết chức năng sắp xếp theo hãng cho sản phẩm nữ, nam và tất cả
