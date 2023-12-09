@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 
 function ListShoe() {
     const [data, setData] = useState(null);
-
+    const [hang, setHang] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,6 +30,11 @@ function ListShoe() {
                     data: response.data.data,
                     loading: false,
                 });
+                setHang({
+                    data: response.data.hang,
+                    loading: false,
+                });
+
 
                 console.log(response.data);
             } catch (error) {
@@ -49,7 +54,7 @@ function ListShoe() {
 
     return (
         <div className="App">
-            <AllShoeList shoes={data} />
+            <AllShoeList shoes={data} hang={hang} />
         </div>
     );
 }

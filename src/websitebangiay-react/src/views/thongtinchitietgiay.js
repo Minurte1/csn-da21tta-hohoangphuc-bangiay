@@ -38,7 +38,12 @@ const ThongTinChiTietGiay = () => {
     };
 
     const increment = () => {
-        setCounterValue(counterValue + 1);
+        if (counterValue + 1 > state.SOLUONG) {
+            alert('Số lượng mà bạn đặt mua đã vượt quá số lượng trong kho hàng hiện có, rất xin lỗi vì sự bất tiện này :(');
+            setCounterValue(state.SOLUONG);
+        } else {
+            setCounterValue(counterValue + 1);
+        }
     };
 
     const decrement = () => {

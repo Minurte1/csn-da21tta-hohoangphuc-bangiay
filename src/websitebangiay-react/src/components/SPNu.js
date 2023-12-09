@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 
 function ListSpNu() {
     const [data, setData] = useState(null);
-
+    const [hang, setHang] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,7 +30,10 @@ function ListSpNu() {
                     data: response.data.data,
                     loading: false,
                 });
-
+                setHang({
+                    data: response.data.hang,
+                    loading: false,
+                });
                 console.log(response.data);
             } catch (error) {
                 console.error(error.message);
@@ -45,11 +48,11 @@ function ListSpNu() {
     }, []);
 
 
-    console.log('checkdatalistSHOE', data);
+    // console.log('checkdatalistSHOE', data);
 
     return (
         <div className="App">
-            <ChildSPNu shoes={data} />
+            <ChildSPNu shoes={data} hang={hang} />
         </div>
     );
 }

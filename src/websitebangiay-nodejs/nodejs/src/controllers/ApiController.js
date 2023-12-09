@@ -3,7 +3,7 @@ const connection = require('../config/database');
 const { format } = require('date-fns');
 const { get } = require('../routers/web');
 const { getAllDonHang } = require('../controllers/homeControllers')
-const { getDonHang, getInfoUser } = require('../services/CRUDServices')
+const { getDonHang, getInfoUser, getAllHang } = require('../services/CRUDServices')
 
 const getAllProduct = async (req, res) => {
     try {
@@ -16,8 +16,9 @@ const getAllProduct = async (req, res) => {
                 throw error; // Re-throw the error to handle it at a higher level if needed
             }
         };
-        let results = await getAllSanPham();
 
+        let results = await getAllSanPham();
+        const hangList = await getAllHang();
         const productsWithImageUrls = results.map((product) => ({
             ...product,
             imageUrl: `http://localhost:3003/images/${product.description}`,
@@ -26,6 +27,7 @@ const getAllProduct = async (req, res) => {
         return res.status(200).json({
             message: "ok",
             data: productsWithImageUrls,
+            hang: hangList,
         });
     } catch (error) {
         console.error(error.message);
