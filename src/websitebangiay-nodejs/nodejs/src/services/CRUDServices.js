@@ -64,7 +64,7 @@ const getAllLoaiSP = async () => {
 // }
 
 const getDonHang = async (req, res) => {
-    let [results, fields] = await (await connection).execute('select * from DONHANG ')
+    let [results, fields] = await (await connection).execute('select * from DONHANG order by NGAYDONHANG DESC ')
     return results;
 }
 

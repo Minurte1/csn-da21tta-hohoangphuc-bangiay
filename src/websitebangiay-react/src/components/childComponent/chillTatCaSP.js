@@ -11,11 +11,10 @@ export const handleItemClick = (shoe, navigate) => {
 export const renderShoeItem = (shoe, navigate) => {
     console.log("Rendering shoe item:", shoe);
 
-    // Làm tròn giá đến hai chữ số sau dấu thập phân
     const roundedPrice = parseFloat(shoe.GIA).toFixed(0);
     var so = parseFloat(roundedPrice);
-
     const price = so.toLocaleString();
+
     return (
         <li key={shoe.MASP} onClick={() => handleItemClick(shoe, navigate)}>
             <img src={`http://localhost:3003/images/${shoe.description}`} alt={shoe.TENSANPHAM} />
@@ -28,23 +27,39 @@ export const renderShoeItem = (shoe, navigate) => {
 export const AllShoeList = ({ shoes, hang }) => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
+    const [sortOrder, setSortOrder] = useState('asc');
     const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedPriceRange, setSelectedPriceRange] = useState('Tất cả');
+
+    const checkPriceRange = (price) => {
+        const numericPrice = parseFloat(price);
+
+        switch (selectedPriceRange) {
+            case 'Dưới 200k':
+                return numericPrice < 200000;
+            case 'Dưới 300k':
+                return numericPrice < 300000;
+            case 'Dưới 400k':
+                return numericPrice < 400000;
+            case 'Dưới 500k':
+                return numericPrice < 500000;
+            default:
+                return true;
+        }
+    };
 
     if (!shoes || !shoes.data || !Array.isArray(shoes.data) || shoes.data.length === 0 || !hang) {
         return <div>No shoes available</div>;
     }
 
-    // Convert the object 'hang' to an array of objects
     const hangArray = Object.keys(hang).map(key => ({ TENHANG: key, ...hang[key] }));
 
-    // Filter the list based on the search term and selected brand
     const filteredShoes = shoes.data.filter(shoe =>
         shoe.TENSANPHAM.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (selectedBrand === '' || selectedBrand === 'Tất cả' || shoe.TENHANG === selectedBrand)
+        (selectedBrand === '' || selectedBrand === 'Tất cả' || shoe.TENHANG === selectedBrand) &&
+        (selectedPriceRange === 'Tất cả' || checkPriceRange(shoe.GIA))
     );
 
-    // Sort the list based on the current sortOrder
     const sortedShoes = [...filteredShoes].sort((a, b) => {
         const priceA = parseFloat(a.GIA);
         const priceB = parseFloat(b.GIA);
@@ -56,10 +71,8 @@ export const AllShoeList = ({ shoes, hang }) => {
         }
     });
 
-    // Get unique brands from the data
     const uniqueBrands = ['Tất cả', ...new Set(shoes.data.map(hang => hang.TENHANG))];
-    console.log(uniqueBrands)
-    console.log('check hang', selectedBrand)
+
     return (
         <div className="shoe-list">
             <h2 className='tieude' id='tieude_tatcasp'>Tất Cả Sản Phẩm</h2>
@@ -91,7 +104,19 @@ export const AllShoeList = ({ shoes, hang }) => {
                     ))}
                 </select>
             </div>
-
+            <div className="dropdown-container">
+                <label className="label-price" htmlFor="priceFilter">Chọn giá:</label>
+                <select
+                    id="priceFilter"
+                    value={selectedPriceRange}
+                    onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    className="select-price"
+                >
+                    {['Tất cả', 'Dưới 200k', 'Dưới 300k', 'Dưới 400k', 'Dưới 500k'].map((price, index) => (
+                        <option key={index} value={price}>{price}</option>
+                    ))}
+                </select>
+            </div>
             <hr></hr>
             <ul>
                 {sortedShoes.map((shoe) => renderShoeItem(shoe, navigate))}

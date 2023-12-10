@@ -33,17 +33,41 @@ export const ChildSPNam = ({ shoes }) => {
     const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
     const [selectedBrand, setSelectedBrand] = useState('');
 
+    const [selectedPriceRange, setSelectedPriceRange] = useState('Tất cả');
+
+
+    const checkPriceRange = (price) => {
+        const numericPrice = parseFloat(price);
+
+        switch (selectedPriceRange) {
+            case 'Dưới 200k':
+                return numericPrice < 200000;
+            case 'Dưới 300k':
+                return numericPrice < 300000;
+            case 'Dưới 400k':
+                return numericPrice < 400000;
+            case 'Dưới 500k':
+                return numericPrice < 500000;
+            default:
+                return true;
+        }
+    };
+
     if (!shoes || !shoes.data || !Array.isArray(shoes.data) || shoes.data.length === 0) {
         return <div>No shoes available</div>;
     }
+
+
 
     // Filter the list based on the search term and selected brand
     const filteredShoes = shoes.data.filter(
         (shoe) =>
             shoe.TENSANPHAM.toLowerCase().includes(searchTerm.toLowerCase()) &&
             (selectedBrand === '' || shoe.TENHANG === selectedBrand) &&
+            (selectedPriceRange === 'Tất cả' || checkPriceRange(shoe.GIA)) &&
             shoe.MALOAI === 15
     );
+
 
     // Sort the list based on the current sortOrder
     const sortedShoes = [...filteredShoes].sort((a, b) => {
@@ -93,6 +117,20 @@ export const ChildSPNam = ({ shoes }) => {
                     ))}
                 </select>
             </div>
+            <div className="dropdown-container">
+                <label className="label-price" htmlFor="priceFilter">Chọn giá:</label>
+                <select
+                    id="priceFilter"
+                    value={selectedPriceRange}
+                    onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    className="select-price"
+                >
+                    {['Tất cả', 'Dưới 200k', 'Dưới 300k', 'Dưới 400k', 'Dưới 500k'].map((price, index) => (
+                        <option key={index} value={price}>{price}</option>
+                    ))}
+                </select>
+            </div>
+
             <hr></hr>
             <ul>
                 {sortedShoes.map((shoe) => (

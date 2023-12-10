@@ -97,3 +97,20 @@
 .select-brand:hover {
     border-color: #2980b9;
 }
+
+.select-price {
+    padding: 8px;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.select-price:hover {
+    border-color: #2980b9;
+}
+
+.label-price {
+    margin-right: 22px;
+    font-weight: bold;
+}

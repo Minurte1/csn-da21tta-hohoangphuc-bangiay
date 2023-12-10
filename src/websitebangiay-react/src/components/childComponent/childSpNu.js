@@ -30,22 +30,39 @@ export const renderShoeItem = (shoe, navigate) => {
 export const ChildSPNu = ({ shoes }) => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
+    const [sortOrder, setSortOrder] = useState('asc');
     const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedPriceRange, setSelectedPriceRange] = useState('Tất cả');
+
+    const checkPriceRange = (price) => {
+        const numericPrice = parseFloat(price);
+
+        switch (selectedPriceRange) {
+            case 'Dưới 200k':
+                return numericPrice < 200000;
+            case 'Dưới 300k':
+                return numericPrice < 300000;
+            case 'Dưới 400k':
+                return numericPrice < 400000;
+            case 'Dưới 500k':
+                return numericPrice < 500000;
+            default:
+                return true;
+        }
+    };
 
     if (!shoes || !shoes.data || !Array.isArray(shoes.data) || shoes.data.length === 0) {
         return <div>No shoes available</div>;
     }
 
-    // Filter the list based on the search term and selected brand
     const filteredShoes = shoes.data.filter(
         (shoe) =>
             shoe.TENSANPHAM.toLowerCase().includes(searchTerm.toLowerCase()) &&
             (selectedBrand === '' || shoe.TENHANG === selectedBrand) &&
+            (selectedPriceRange === 'Tất cả' || checkPriceRange(shoe.GIA)) &&
             shoe.MALOAI === 16
     );
 
-    // Sort the list based on the current sortOrder
     const sortedShoes = [...filteredShoes].sort((a, b) => {
         const priceA = parseFloat(a.GIA);
         const priceB = parseFloat(b.GIA);
@@ -57,7 +74,6 @@ export const ChildSPNu = ({ shoes }) => {
         }
     });
 
-    // Get unique brands from the data
     const uniqueBrands = [...new Set(shoes.data.map((shoe) => shoe.TENHANG))];
 
     return (
@@ -90,6 +106,19 @@ export const ChildSPNu = ({ shoes }) => {
                 >
                     {uniqueBrands.map((brand, index) => (
                         <option key={index} value={brand}>{brand}</option>
+                    ))}
+                </select>
+            </div>
+            <div className="dropdown-container">
+                <label className="label-price" htmlFor="priceFilter">Chọn giá:</label>
+                <select
+                    id="priceFilter"
+                    value={selectedPriceRange}
+                    onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    className="select-price"
+                >
+                    {['Tất cả', 'Dưới 200k', 'Dưới 300k', 'Dưới 400k', 'Dưới 500k'].map((price, index) => (
+                        <option key={index} value={price}>{price}</option>
                     ))}
                 </select>
             </div>
