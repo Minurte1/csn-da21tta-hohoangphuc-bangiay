@@ -108,3 +108,5 @@ src
 # Ngày 9.12.2023
 - Viết chức năng sắp xếp theo hãng cho sản phẩm nữ, nam và tất cả
 - Viết chức năng sắp xếp theo giá tiền cho sản phẩm nữ, nam và tất cả
+# Ngày 10.12.2023
+- Viết chức năng tìm kiếm sản phẩm theo giá tiền dưới 200k, 300k, 400k, 500k cho sản phẩm nữ, nam và tất cả
