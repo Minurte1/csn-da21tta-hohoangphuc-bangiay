@@ -12,91 +12,178 @@
 </style>
 
 <body>
-    <div class="topnav">
-        <a href="/">Home</a>
-        <a href="/create" class="active">Thêm Sản Phẩm</a>
-        <a href="/create-loaisanpham" class="active">Thêm Loại Giày</a>
-        <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
-    </div>
-    <div class="form">
-        <form action="/create-Sanpham" enctype="multipart/form-data" method="post">
-            <fieldset>
-                <legend>Form add new users</legend>
-                <!-- <div class="input-group">
+
+    <div class="container">
+        <div class="vertical-navbar">
+            <a href="/">Home</a>
+            <a href="/create">Create Sản Phẩm</a>
+            <!-- <a href="/khachhang">Thông Tin Khách Hàng</a> -->
+            <a href="/All-donhang">Tất Cả Đơn Hàng</a>
+
+        </div>
+        <div class="container-create">
+            <div class="topnav">
+
+                <a href="/create" class="active">Thêm Sản Phẩm</a>
+                <a href="/create-loaisanpham" class="active">
+                    <p class="active-chucnang">Thêm Loại Giày</p>
+                </a>
+                <a href="/create-hangsanpham" class="active">
+                    <p>Thêm Hãng Giày</p>
+                </a>
+            </div>
+            <div class="form">
+                <form action="/create-Sanpham" enctype="multipart/form-data" method="post">
+                    <fieldset>
+                        <legend>Form add new users</legend>
+                        <!-- <div class="input-group">
                     <label for="">Mã Sản Phẩm</label>
                     <input type="text" id="MASP" name="MASP">
                 </div> -->
-                <div class="input-group">
-                    <label for="">Giá bán</label>
-                    <input type="text" id="EmailId" name="Gia">
-                </div>
-                <div class="input-group">
-                    <label for="">Tên Sản Phẩm</label>
-                    <input type="text" name="tenSanpham">
-                </div>
-                <div class="input-group">
-                    <label for="size">Tên Hãng</label>
+                        <div class="input-group">
+                            <label for="">Giá bán</label>
+                            <input type="text" id="EmailId" name="Gia">
+                        </div>
+                        <div class="input-group">
+                            <label for="">Tên Sản Phẩm</label>
+                            <input type="text" name="tenSanpham">
+                        </div>
+                        <div class="input-group">
+                            <label for="size">Tên Hãng</label>
 
-                    <select name="Tenhang">
-                        <% AllHangSP.forEach(function(AllHangSP) { %>
-                            <option value="<%= AllHangSP.TENHANG %>">
-                                <%= AllHangSP.TENHANG %>
-                            </option>
-                            <% }); %>
-                                <!-- Thêm các option khác nếu cần -->
-                    </select>
+                            <select name="Tenhang">
+                                <% AllHangSP.forEach(function(AllHangSP) { %>
+                                    <option value="<%= AllHangSP.TENHANG %>">
+                                        <%= AllHangSP.TENHANG %>
+                                    </option>
+                                    <% }); %>
+                                        <!-- Thêm các option khác nếu cần -->
+                            </select>
 
-                </div>
-                <!-- <div class="input-group input-groupcity">
+                        </div>
+                        <!-- <div class="input-group input-groupcity">
                     <label for="">Mô tả sản phẩm</label>
                     <input type="text" name="Mota">
                 </div> -->
-                <div class="input-group">
-                    <label for="size">Loại Sản Phẩm</label>
-                    <select name="MALOAI">
-                        <% AllLoaiSP.forEach(function(AllLoaiSP) { %>
+                        <div class="input-group">
+                            <label for="size">Loại Sản Phẩm</label>
+                            <select name="MALOAI">
+                                <% AllLoaiSP.forEach(function(AllLoaiSP) { %>
 
 
-                            <option value="<%= AllLoaiSP.MALOAI %>">
-                                <%= AllLoaiSP.name %>
-                            </option>
-                            <% }); %>
+                                    <option value="<%= AllLoaiSP.MALOAI %>">
+                                        <%= AllLoaiSP.name %>
+                                    </option>
+                                    <% }); %>
+                                        <!-- Thêm các option khác nếu cần -->
+                            </select>
+
+                        </div>
+                        <div class="input-group">
+                            <label for="size">Size</label>
+                            <select name="Size" id="size">
+                                <!-- Thêm các option từ cơ sở dữ liệu -->
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
                                 <!-- Thêm các option khác nếu cần -->
-                    </select>
+                            </select>
+                        </div>
+                        <div class="input-group input-groupcity">
+                            <label for="">Số lượng</label>
+                            <input type="text" name="Soluong">
+                        </div>
+                        <div class="input-group input-groupcity">
+                            <label for="">Thông tin chi tiết mô tả sản phẩm</label>
+                            <input type="text" name="thongtinsanpham" id="thongtinsanpham">
+                        </div>
+                        <div>
+                            <label for="">Avatar: </label>
+                            <input type="file" name="profile_pic" />
+                        </div>
+                        <td>
+                            <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data"></form>
+                        </td>
+                        <div class="button">
+                            <button> Adđ New User</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
 
-                </div>
-                <div class="input-group">
-                    <label for="size">Size</label>
-                    <select name="Size" id="size">
-                        <!-- Thêm các option từ cơ sở dữ liệu -->
-                        <option value="37">37</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <!-- Thêm các option khác nếu cần -->
-                    </select>
-                </div>
-                <div class="input-group input-groupcity">
-                    <label for="">Số lượng</label>
-                    <input type="text" name="Soluong">
-                </div>
-                <div class="input-group input-groupcity">
-                    <label for="">Thông tin chi tiết mô tả sản phẩm</label>
-                    <input type="text" name="thongtinsanpham" id="thongtinsanpham">
-                </div>
-                <div>
-                    <label for="">Avatar: </label>
-                    <input type="file" name="profile_pic" />
-                </div>
-                <td>
-                    <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data"></form>
-                </td>
-                <div class="button">
-                    <button> Adđ New User</button>
-                </div>
-            </fieldset>
-        </form>
     </div>
+    <style>
+        .active-chucnang {
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .active {
+            background-color: #45a049;
+
+        }
+
+        .container-create {
+            width: 90%;
+
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            background-color: #edf1fa;
+
+        }
+
+        .form {
+            margin-left: 15%;
+            margin-top: 50px;
+            padding: 15px 20px;
+            width: 80%;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        .vertical-navbar {
+
+            width: 10%;
+            display: flex;
+            flex-direction: column;
+            background-color: #333;
+            /* Màu nền của navbar */
+            padding: 15px;
+            /* Khoảng cách giữa các nút */
+            position: fixed;
+
+            height: 100%;
+            /* Chiều cao của navbar sẽ chiếm toàn bộ chiều cao của trang */
+        }
+
+        .vertical-navbar a {
+            color: white;
+            /* Màu chữ của các nút */
+            text-decoration: none;
+            /* Loại bỏ đường gạch chân mặc định cho liên kết */
+            padding: 10px;
+            /* Kích thước của từng nút */
+            border-bottom: 1px solid #ddd;
+            /* Đường biên dưới giữa các nút */
+        }
+
+        .vertical-navbar a:hover {
+            background-color: #555;
+            /* Màu nền khi di chuột qua nút */
+        }
+
+        .content {
+            margin-left: 200px;
+            /* Để tránh bị che phủ bởi navbar */
+            padding: 20px;
+        }
+    </style>
 </body>
 
 </html>
