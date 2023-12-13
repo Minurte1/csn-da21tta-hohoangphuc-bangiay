@@ -12,71 +12,103 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-forms">
         <div class="vertical-navbar">
             <a href="/">Home</a>
-            <a href="/create" class="create-sanpham">Create Sản Phẩm</a>
-            <!-- <a href="/khachhang">Thông Tin Khách Hàng</a> -->
+            <a href="/create" class="create-sanpham">Tạo Sản Phẩm</a>
+
             <a href="/All-donhang">Tất Cả Đơn Hàng</a>
 
         </div>
-        <div class="topnav">
-            <!-- <a href="/">Home</a>
+        <!-- <div class="topnav">
+             <a href="/">Home</a>
             <a href="/create" class="active">Tạo Sản Phẩm</a> -->
-            <a href="/create-loaisanpham" class="active">Tạo Loại Sản Phẩm</a>
-            <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
-        </div>
+        <!-- <a href="/create-loaisanpham" class="active">Tạo Loại Sản Phẩm</a>
+        <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a> -->
+
         <!-- <form action="/All-donhang" method="get">
             <button class="chucnang-quayve"> <---- Quay về</button>
         </form> -->
-        <div class="form">
-            <form action="/create-hangsanphamfr" method="post">
-                <fieldset>
-                    <legend>THÊM HÃNG GIÀY</legend>
-                    <div class="input-group input-groupcity">
-                        <label for="">TÊN HÃNG SẢN PHẨM</label>
-                        <input type="text" name="tenHangSP">
-                    </div>
-                    <div class="button">
-                        <button>Adđ New User</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <table class="container-LoaiSP">
-            <tbody>
-                <tr class="hang-loaiSP">
 
-                    <td class="cot2-loaiSP">
-                        TÊN LOẠI SẢN PHẨM
-                    </td>
-                </tr>
-                <% AllHangSP.forEach(function(AllHangSP) { %>
+        <div class="container-form">
+            <div class="container-form-quayve">
+                <form action="/create" method="get">
+                    <button class="chucnang-quayve"> <---- Quay về</button>
+                </form>
+            </div>
 
+            <div class="form">
+
+                <form action="/create-hangsanphamfr" method="post">
+                    <fieldset>
+                        <legend>THÊM HÃNG GIÀY</legend>
+                        <div class="input-group input-groupcity">
+                            <label for="">TÊN HÃNG SẢN PHẨM</label>
+                            <input type="text" name="tenHangSP">
+                        </div>
+                        <div class="button">
+                            <button>Thêm</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <table class="container-LoaiSP">
+                <tbody>
                     <tr class="hang-loaiSP">
 
                         <td class="cot2-loaiSP">
-                            <%= AllHangSP.TENHANG %>
+                            TÊN LOẠI SẢN PHẨM
                         </td>
-                        <td>
-                            <form action="/delete-hangsanphamfr/<%= AllHangSP.TENHANG %>" method="post">
-                                <button>Xóa</button>
-                            </form>
-                        </td>
-
                     </tr>
-                    <% }); %>
-            </tbody>
-        </table>
+                    <% AllHangSP.forEach(function(AllHangSP) { %>
+
+                        <tr class="hang-loaiSP">
+
+                            <td class="cot2-loaiSP">
+                                <%= AllHangSP.TENHANG %>
+                            </td>
+                            <td>
+                                <form action="/delete-hangsanphamfr/<%= AllHangSP.TENHANG %>" method="post">
+                                    <button>Xóa</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <style>
+    .container-forms {
+        width: 100%;
+        height: auto;
+        display: flex;
+    }
+
+    .container-form-quayve {
+        margin-left: 5%;
+        margin-top: 3%;
+
+    }
+
+    .container-form {
+        margin-top: -20px;
+        width: 90%;
+        margin-left: 10%;
+    }
+
     .container {
-        margin-top: -50px;
+        display: flex;
+        width: 100%;
+        background-color: #edf1fa;
+
+
     }
 
     .vertical-navbar {
-        border-radius: 10px;
+        /* margin-left: 10%; */
         width: 10%;
         display: flex;
         flex-direction: column;
@@ -106,6 +138,12 @@
         /* Màu nền khi di chuột qua nút */
     }
 
+    .content {
+        margin-left: 200px;
+        /* Để tránh bị che phủ bởi navbar */
+        padding: 20px;
+    }
+
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
@@ -133,7 +171,8 @@
     }
 
     .form {
-        max-width: 600px;
+        /* max-width: 600px; */
+        width: 100%;
         margin: 20px auto;
         padding: 20px;
         background-color: #fff;

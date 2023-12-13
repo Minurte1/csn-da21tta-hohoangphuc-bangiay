@@ -12,57 +12,128 @@
 </head>
 
 <body>
-    <div class="topnav">
-        <a href="/">Home</a>
-        <a href="/create" class="active">Tạo Sản Phẩm</a>
-        <a href="/create-loaisanpham" class="active">Tạo Loại Sản Phẩm</a>
-        <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
-    </div>
-    <div class="form">
-        <form action="/create-loaisanphamfr" method="post">
-            <fieldset>
-                <legend>TẠO LOẠI SẢN PHẨM</legend>
-                <div class="input-group input-groupcity">
-                    <label for="">TÊN LOẠI SẢN PHẨM</label>
-                    <input type="text" name="tenLoaiSP">
-                </div>
-                <div class="button">
-                    <button>Adđ New User</button>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-    <table class="container-LoaiSP">
-        <tbody>
-            <tr class="hang-loaiSP">
-                <td class="cot1-loaiSP">
-                    MÃ LOẠI
-                </td>
-                <td class="cot2-loaiSP">
-                    TÊN LOẠI SẢN PHẨM
-                </td>
-            </tr>
-            <% AllLoaiSP.forEach(function(AllLoaiSP) { %>
+    <div class="container">
+        <div class="vertical-navbar">
+            <a class="active" href="/">Home</a>
+            <a href="/create">Tạo Sản Phẩm</a>
+            <!-- <a href="/khachhang">Thông Tin Khách Hàng</a> -->
+            <a href="/All-donhang" class="tatcadonhang">Tất Cả Đơn Hàng</a>
+        </div>
+        <!-- <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/create" class="active">Tạo Sản Phẩm</a>
+            <a href="/create-loaisanpham" class="active">Tạo Loại Sản Phẩm</a>
+            <a href="/create-hangsanpham" class="active">Thêm Hãng Giày</a>
+        </div> -->
+        <div class="container-form">
+            <div class="container-form-quayve">
+                <form action="/create" method="get">
+                    <button class="chucnang-quayve"> <---- Quay về</button>
+                </form>
+            </div>
+            <div class="form">
 
-                <tr class="hang-loaiSP">
-                    <td class="cot1-loaiSP">
-                        <%= AllLoaiSP.MALOAI %>
-                    </td>
-                    <td class="cot2-loaiSP">
-                        <%= AllLoaiSP.name %>
-                    </td>
-                    <td>
-                        <form action="/delete-loaisanphamfr/<%= AllLoaiSP.MALOAI %>" method="post">
-                            <button>Xóa</button>
-                        </form>
-                    </td>
+                <form action="/create-loaisanphamfr" method="post">
+                    <fieldset>
+                        <legend>TẠO LOẠI SẢN PHẨM</legend>
+                        <div class="input-group input-groupcity">
+                            <label for="">TÊN LOẠI SẢN PHẨM</label>
+                            <input type="text" name="tenLoaiSP">
+                        </div>
+                        <div class="button">
+                            <button>Thêm</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <table class="container-LoaiSP">
+                <tbody>
+                    <tr class="hang-loaiSP">
+                        <td class="cot1-loaiSP">
+                            MÃ LOẠI
+                        </td>
+                        <td class="cot2-loaiSP">
+                            TÊN LOẠI SẢN PHẨM
+                        </td>
+                    </tr>
+                    <% AllLoaiSP.forEach(function(AllLoaiSP) { %>
 
-                </tr>
-                <% }); %>
-        </tbody>
-    </table>
+                        <tr class="hang-loaiSP">
+                            <td class="cot1-loaiSP">
+                                <%= AllLoaiSP.MALOAI %>
+                            </td>
+                            <td class="cot2-loaiSP">
+                                <%= AllLoaiSP.name %>
+                            </td>
+                            <td>
+                                <form action="/delete-loaisanphamfr/<%= AllLoaiSP.MALOAI %>" method="post">
+                                    <button>Xóa</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </body>
 <style>
+    .container-form-quayve {
+        margin-left: 5%;
+    }
+
+    .container-form {
+        width: 90%;
+        margin-left: 10%;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        background-color: #edf1fa;
+
+
+    }
+
+    .vertical-navbar {
+
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        background-color: #333;
+        /* Màu nền của navbar */
+        padding: 15px;
+        /* Khoảng cách giữa các nút */
+        position: fixed;
+
+        height: 100%;
+        /* Chiều cao của navbar sẽ chiếm toàn bộ chiều cao của trang */
+    }
+
+    .vertical-navbar a {
+        color: white;
+        /* Màu chữ của các nút */
+        text-decoration: none;
+        /* Loại bỏ đường gạch chân mặc định cho liên kết */
+        padding: 10px;
+        /* Kích thước của từng nút */
+        /* border-bottom: 1px solid #ddd; */
+        /* Đường biên dưới giữa các nút */
+    }
+
+    .vertical-navbar a:hover {
+        background-color: black;
+        /* Màu nền khi di chuột qua nút */
+    }
+
+    .content {
+        margin-left: 200px;
+        /* Để tránh bị che phủ bởi navbar */
+        padding: 20px;
+    }
+
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
