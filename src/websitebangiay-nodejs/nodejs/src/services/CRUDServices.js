@@ -1,7 +1,7 @@
 const connection = require('../config/database')
 const getAllSanPham = async () => {
 
-    let [results, fields] = await (await connection).execute('select * from SANPHAM ')
+    let [results, fields] = await (await connection).execute('select * from SANPHAM ORDER BY MASP DESC ')
     return results;
 }
 const getAllHang = async () => {

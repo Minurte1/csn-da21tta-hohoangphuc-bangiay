@@ -1,7 +1,11 @@
+// const { Query } = require('mysql2/typings/mysql/lib/protocol/sequences/Query');
 const connection = require('../config/database');
+const mysql = require('mysql2/promise');
+const pool = require('../config/old');
 const { get } = require('../routers/web');
 const { getDonHang, getInfoUser, getAllSanPham, getAllHang, getUpdateSanPhamID, getAllLoaiSP } = require('../services/CRUDServices');
 const { format } = require('date-fns');
+const { query } = require('express');
 
 
 const getUpdatePage = async (req, res) => {
@@ -115,14 +119,65 @@ const postCreateSanpham = async (req, res) => {
         return res.status(400).json({ error: "Please select an image to upload" });
     }
     try {
+        const [countResults, countFields] = await (await connection).execute('SELECT COUNT(*) AS TotalProducts FROM SANPHAM');
         const [results, fields] = await (await connection).execute(`INSERT INTO SANPHAM (TENSANPHAM,TENHANG,GIA,description,MALOAI,GIATRI,SOLUONG,THONGTINSANPHAM) VALUES (?,?,?,?,?,?,?,?);`, [tenSanpham, Tenhang, Gia, req.file.filename, Loaisanpham, Size, Soluong, thongtinsanpham],
 
         );
+        const [countMWCResults, countMWCFields] = await (await connection).execute('SELECT COUNT(*) AS TotalMWCProducts FROM SANPHAM WHERE TENHANG = ?', ['MWC']);
 
+        // Lấy giá trị số lượng sản phẩm có HANG là 'MWC' từ kết quả truy vấn
+        const totalMWCProductss = countMWCResults[0].TotalMWCProducts;
+        const totalProductss = countResults[0].TotalProducts;
+
+        const [mostHangResults, mostHangFields] = await (await connection).execute(`
+        SELECT TENHANG, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY TENHANG
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+
+        // Lấy giá trị HANG có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostHang = mostHangResults[0];
+
+        // Thực hiện truy vấn để thống kê số lượng sản phẩm theo LOAI nhiều nhất
+        const [mostLoaiResults, mostLoaiFields] = await (await connection).execute(`
+        SELECT MALOAI, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY MALOAI
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+
+        // Lấy giá trị LOAI có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostLoai = mostLoaiResults[0];
+
+        // Thực hiện truy vấn để thống kê số lượng sản phẩm theo SIZE nhiều nhất
+        const [mostSizeResults, mostSizeFields] = await (await connection).execute(`
+        SELECT GIATRI, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY GIATRI
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+
+        // Lấy giá trị SIZE có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostSize = mostSizeResults[0];
+        const [totalPriceResults, totalPriceFields] = await (await connection).execute(`
+        SELECT SUM(GIA) AS TotalPrice
+        FROM SANPHAM;
+    `);
+
+        // Lấy giá trị tổng giá tiền từ kết quả truy vấn
+        const totalPrice = totalPriceResults[0].TotalPrice;
+        const Tien = parseFloat(totalPrice).toFixed(0);
+        var so1 = parseFloat(Tien);
+        const price1 = so1.toLocaleString();
         console.log(">>results ", results);
         let getHang = await getAllHang();
         let AllLoaiSPP = await getAllLoaiSP()
-        res.render('create.ejs', { AllHangSP: getHang, AllLoaiSP: AllLoaiSPP });
+        let AllSP = await getAllSanPham();
+        res.render('create.ejs', { totalPrice: price1, mostHang, mostLoai, mostSize, AllHangSP: getHang, AllLoaiSP: AllLoaiSPP, listSanpham: AllSP, totalProducts: totalProductss, totalMWCProducts: totalMWCProductss });
         // res.redirect("/");
     }
 
@@ -215,10 +270,69 @@ const getUpdateSanpham = async (req, res) => {
 
 // }
 const getCreatePage = async (req, res) => {
-    let results = await getAllHang();
-    let AllLoaiSPP = await getAllLoaiSP()
-    res.render('create.ejs', { AllHangSP: results, AllLoaiSP: AllLoaiSPP });
+    try {
+        const [countResults, countFields] = await (await connection).execute('SELECT COUNT(*) AS TotalProducts FROM SANPHAM');
+
+        const [countMWCResults, countMWCFields] = await (await connection).execute('SELECT COUNT(*) AS TotalMWCProducts FROM SANPHAM WHERE TENHANG = ?', ['MWC']);
+
+        // Lấy giá trị số lượng sản phẩm có HANG là 'MWC' từ kết quả truy vấn
+        const totalMWCProductss = countMWCResults[0].TotalMWCProducts;
+        const totalProductss = countResults[0].TotalProducts;
+
+        const [mostHangResults, mostHangFields] = await (await connection).execute(`
+        SELECT TENHANG, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY TENHANG
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+
+        // Lấy giá trị HANG có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostHang = mostHangResults[0];
+
+        // Thực hiện truy vấn để thống kê số lượng sản phẩm theo LOAI nhiều nhất
+        const [mostLoaiResults, mostLoaiFields] = await (await connection).execute(`
+        SELECT MALOAI, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY MALOAI
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+
+        // Lấy giá trị LOAI có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostLoai = mostLoaiResults[0];
+
+        // Thực hiện truy vấn để thống kê số lượng sản phẩm theo SIZE nhiều nhất
+        const [mostSizeResults, mostSizeFields] = await (await connection).execute(`
+        SELECT GIATRI, COUNT(*) AS TotalProducts
+        FROM SANPHAM
+        GROUP BY GIATRI
+        ORDER BY TotalProducts DESC
+        LIMIT 1;
+    `);
+        const [totalPriceResults, totalPriceFields] = await (await connection).execute(`
+        SELECT SUM(GIA) AS TotalPrice
+        FROM SANPHAM;
+    `);
+
+        // Lấy giá trị tổng giá tiền từ kết quả truy vấn
+        const totalPricee = totalPriceResults[0].TotalPrice;
+        const Tien = parseFloat(totalPricee).toFixed(0);
+        var so1 = parseFloat(Tien);
+        const price1 = so1.toLocaleString();
+        // Lấy giá trị SIZE có số lượng sản phẩm nhiều nhất từ kết quả truy vấn
+        const mostSize = mostSizeResults[0];
+        let results = await getAllHang();
+        let AllLoaiSPP = await getAllLoaiSP()
+        let AllSP = await getAllSanPham();
+
+        res.render('create.ejs', { totalPrice: price1, AllHangSP: results, AllLoaiSP: AllLoaiSPP, listSanpham: AllSP, totalProducts: totalProductss, mostHang, mostLoai, mostSize, totalMWCProducts: totalMWCProductss });
+    }
+    catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
 }
+
 const postHandleRemoveSanpham = async (req, res) => {
     try {
         var productID = req.params.id;
@@ -360,6 +474,48 @@ const getAllChiTietDonHang = async (req, res) => {
 
 
 }
+
+
+
+const postHomePage = async (req, res) => {
+    let { TenSP, Tenhang, MaLoai, Size } = req.body;
+
+    let sqlQuery = `
+        SELECT sp.MASP, sp.TENSANPHAM, sp.TENHANG, sp.GIA,sp.description,sp.MALOAI, sp.GIATRI, sp.SOLUONG, sp.THONGTINSANPHAM
+        FROM SANPHAM as sp
+        WHERE 1=1`;
+
+    if (TenSP) {
+        sqlQuery += ` AND sp.TENSANPHAM LIKE '%${TenSP}%'`;
+    }
+
+    if (Tenhang) {
+        sqlQuery += ` AND sp.TENHANG = '${Tenhang}'`;
+    }
+
+    if (MaLoai) {
+        sqlQuery += ` AND sp.MALOAI = ${MaLoai}`;
+    }
+
+    if (Size) {
+        sqlQuery += ` AND sp.GIATRI = ${Size}`;
+    }
+
+    try {
+        const [rows, fields] = await pool.query(sqlQuery);
+        return res.render('Tim.ejs', { listSanpham: rows });
+    } catch (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).send('Internal Server Error');
+    }
+}
+
+
+
+// Đừng quên đóng kết nối sau khi sử dụng
+// connection.end();
+
+
 module.exports = {
     // getAllProduct,
     getABC,
@@ -389,6 +545,7 @@ module.exports = {
 
     //  --------- DonHang ------------
     getAllDonHang,
-    getAllChiTietDonHang
+    getAllChiTietDonHang,
+    postHomePage,
 
 }

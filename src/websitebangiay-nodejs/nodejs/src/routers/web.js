@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 const { DeleteDonHang, getDeleteUser } = require('../controllers/ApiController')
-const { getAllChiTietDonHang, getAllDonHang, getItemUser, InfoUser, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
+const { getAllChiTietDonHang, getAllDonHang, getItemUser, InfoUser, postHomePage, getDeleteHangSP, getAppcetHangSP, getCreateHangSP, getHomepagee, getABC, getUpdateSanpham, getCreateLoaiSP, getDeleteLoaiSP, getAppcetLoaiSP, postHandleRemoveSanpham, getChonSanPham, postDeleteUser, getHoangphucdethuong, getSameple, getUpdatePage, postCreateSanpham, getCreatePage } = require('../controllers/homeControllers');
 var appRoot = require("app-root-path");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -38,7 +38,7 @@ const imagePath = path.join(__dirname, 'public', 'images');
 
 // router.get('/api/data', getHomepage)
 
-
+router.post('/Tim', upload.none(), postHomePage);
 router.get('/', getHomepagee)
 router.get('/abc', getABC)
 router.get('/p', getHoangphucdethuong)

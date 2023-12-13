@@ -85,25 +85,27 @@
 
 
         <div class="list-users">
-            <h2 class="tieude-h3">HOME</h2>
+            <div class="container-form-quayve">
+                <form action="/" method="get">
+                    <button class="chucnang-quayve">Quay về</button>
+                </form>
+            </div>
+            <h2 class="tieude-h3">Tìm Sản Phẩm</h2>
             <p class="danhsachsanpham">Danh Sách Sản Phẩm</p>
-            <tr>
-                <table>
-                    <tr>
-                        <form action="/Tim" method="post" class="search-form">
+            <table>
+                <tr>
+                    <form action="/Tim" method="post" class="search-form">
 
-                            <input type="text" placeholder="Tên sản phẩm" name="TenSP" class="search-input">
-                            <input type="text" placeholder="Tên hãng" name="TenHang" class="search-input">
+                        <input type="text" placeholder="Tên sản phẩm" name="TenSP" class="search-input">
+                        <input type="text" placeholder="Tên hãng" name="TenHang" class="search-input">
 
-                            <input type="text" placeholder="Mã loại" name="MaLoai" class="search-input">
-                            <input type="text" placeholder="Kích cỡ" name="Size" class="search-input">
+                        <input type="text" placeholder="Mã loại" name="MaLoai" class="search-input">
+                        <input type="text" placeholder="Kích cỡ" name="Size" class="search-input">
 
-                            <button type="submit" class="search-button">Tìm</button>
-                        </form>
-                    </tr>
-                </table>
-
-            </tr>
+                        <button type="submit" class="search-button">Tìm</button>
+                    </form>
+                </tr>
+            </table>
             <table class="table">
                 <tr class="tieude-data">
                     <th>Mã </th>
@@ -171,6 +173,17 @@
         </div>
     </div>
     <style>
+        .chucnang-quayve {
+            margin-bottom: 20px;
+            width: 100px;
+            height: 35px;
+            border-radius: 7px;
+            background-color: #45a049;
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+
         .active {
             background-color: black;
         }
