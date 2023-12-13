@@ -28,7 +28,7 @@
         <div class="container-form">
             <div class="container-form-quayve">
                 <form action="/create" method="get">
-                    <button class="chucnang-quayve"> <---- Quay về</button>
+                    <button class="chucnang-quayve">Quay về</button>
                 </form>
             </div>
             <div class="form">
@@ -67,7 +67,7 @@
                             </td>
                             <td>
                                 <form action="/delete-loaisanphamfr/<%= AllLoaiSP.MALOAI %>" method="post">
-                                    <button>Xóa</button>
+                                    <button class="xoa">Xóa</button>
                                 </form>
                             </td>
 
@@ -80,6 +80,10 @@
     </div>
 </body>
 <style>
+    .xoa {
+        background-color: rgb(202, 6, 6);
+    }
+
     .container-form-quayve {
         margin-left: 5%;
     }

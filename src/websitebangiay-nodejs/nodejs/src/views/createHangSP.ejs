@@ -33,7 +33,7 @@
         <div class="container-form">
             <div class="container-form-quayve">
                 <form action="/create" method="get">
-                    <button class="chucnang-quayve"> <---- Quay về</button>
+                    <button class="chucnang-quayve">Quay về</button>
                 </form>
             </div>
 
@@ -69,7 +69,7 @@
                             </td>
                             <td>
                                 <form action="/delete-hangsanphamfr/<%= AllHangSP.TENHANG %>" method="post">
-                                    <button>Xóa</button>
+                                    <button class="xoa">Xóa</button>
                                 </form>
                             </td>
 
@@ -81,6 +81,10 @@
     </div>
 </body>
 <style>
+    .xoa {
+        background-color: rgb(202, 6, 6);
+    }
+
     .container-forms {
         width: 100%;
         height: auto;

@@ -15,7 +15,7 @@ const getUpdatePage = async (req, res) => {
 }
 const getChonSanPham = async (req, res) => {
     const idSanpham = req.params.id;
-    const [results, fields] = await (await connection).query('SELECT * FROM SANPHAM WHERE MASP = ?', [idSanpham]);
+    const [results, fields] = await (await connection).query('SELECT * FROM SANPHAM WHERE MASP = ? ', [idSanpham]);
     console.log('=>>> ', results)
     let Sanpham = results && results.length > 0 ? results[0] : {};
 

@@ -10,6 +10,40 @@
       padding: 0;
   }
 
+  .xoa:hover {
+      cursor: pointer;
+      filter: brightness(85%);
+  }
+
+  .chucnang-xemthem:hover {
+      cursor: pointer;
+      filter: brightness(90%);
+  }
+
+  .chucnang-xoa:hover {
+      cursor: pointer;
+      filter: brightness(90%);
+  }
+
+  .chucnang-xoa {
+      width: 80px;
+      height: 30px;
+      border-radius: 5px;
+      border: none;
+      background-color: rgb(186, 7, 7);
+      color: white;
+  }
+
+  .chucnang-xemthem {
+      width: 80px;
+      height: 30px;
+      border-radius: 5px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+
+  }
+
   .container-create {
       width: 100%;
       height: auto;
@@ -18,6 +52,16 @@
   body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
+  }
+
+  .chucnang:hover {
+      cursor: pointer;
+      filter: brightness(85%);
+  }
+
+  .chucnang-quayve:hover {
+      cursor: pointer;
+      filter: brightness(85%);
   }
 
   .topnav {
