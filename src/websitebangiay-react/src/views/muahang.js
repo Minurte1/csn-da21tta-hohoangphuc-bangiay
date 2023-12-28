@@ -72,10 +72,18 @@ const MuaHang = () => {
     // Add host to the dependency array
 
     const handleProvinceChange = (provinceName, e) => {
+        if (!provinceName) {
+            // Trường hợp "Chọn tỉnh" được chọn
+            setDistricts([]); // Xóa danh sách quận/huyện
+            setWards([]); // Xóa danh sách phường/xã
+            setCustomerInfo((prevInfo) => ({ ...prevInfo, province: '' })); // Đặt giá trị tỉnh thành rỗng
+            return; // Không gọi API nếu tỉnh thành không được chọn
+        }
+
         // Fetch districts based on selected province
         axios.get(`${host}p/${provinceName}?depth=2`)
             .then((response) => {
-                console.log('tinh =>>', response.data.name)
+                console.log('tinh =>>', response.data.name);
                 const province1 = response.data.name;
                 setDistricts(response.data.districts);
                 setCustomerInfo((prevInfo) => ({ ...prevInfo, province: province1 }));
@@ -84,11 +92,18 @@ const MuaHang = () => {
                 console.error(error);
             });
     };
-    const handleDistrictChange = (provinceName, e) => {
-        // Fetch districts based on selected province
-        axios.get(`${host}d/${provinceName}?depth=2`)
+    const handleDistrictChange = (districtCode, e) => {
+        if (!districtCode) {
+            // Trường hợp "Chọn quận" được chọn
+            setWards([]); // Xóa danh sách phường/xã
+            setCustomerInfo((prevInfo) => ({ ...prevInfo, districts: '' })); // Đặt giá trị quận/huyện thành rỗng
+            return; // Không gọi API nếu quận/huyện không được chọn
+        }
+
+        // Fetch wards based on selected district
+        axios.get(`${host}d/${districtCode}?depth=2`)
             .then((response) => {
-                console.log('huyen =>>', response.data.name)
+                console.log('huyen =>>', response.data.name);
                 const dis = response.data.name;
                 setWards(response.data.wards);
                 setCustomerInfo((prevInfo) => ({ ...prevInfo, districts: dis }));
@@ -144,29 +159,26 @@ const MuaHang = () => {
 
 
 
-
     const handleOrder = () => {
         const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
         console.log("Thông tin người dùng:", customerInfo);
         console.log("Thông tin người dùng:", customerInfo.districts);
         console.log(giay.MASP)
         setOrderTime(currentTime);
-        if ((!customerInfo.name) || (!customerInfo.address) || (!customerInfo.phoneNumber)) {
-            alert('Bạn chưa nhập đủ thông tin')
 
+        if (!customerInfo.name || !customerInfo.address || !customerInfo.phoneNumber || customerInfo.phoneNumber.length !== 10) {
+            alert('Vui lòng nhập đầy đủ thông tin');
         } else {
             // Call the printSelectedValues function to log the selected values
             console.log("currentTime after setOrderTime:", currentTime);
             // Additional logic to send customerInfo to the server or perform other actions
-            alert('Cảm ơn bạn đã ủng hộ shop chúng mình')
+            alert('Cảm ơn bạn đã ủng hộ shop chúng mình');
             sendDataToBackend();
             // Thông báo đặt hàng thành công
             // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
-
         }
-
-
     };
+
 
     const tienvaSL = giay.GIA * soLuong;
     const Tien = parseFloat(tienvaSL).toFixed(0);
