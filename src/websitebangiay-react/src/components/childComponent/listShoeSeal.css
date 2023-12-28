@@ -6,6 +6,12 @@
 
 }
 
+
+.shoe-listindex {
+    z-index: 200;
+    margin-top: -5%;
+}
+
 .thea {
     text-decoration: none;
     z-index: 10;
@@ -42,6 +48,10 @@
     /* Thêm hiệu ứng chuyển động */
 }
 
+.hrne {
+    margin-top: -3%;
+}
+
 .shoe-list li:hover {
     transform: scale(1.05);
     /* Phóng to khi hover */
@@ -69,6 +79,8 @@
     margin: 10px 0;
     font-size: 20px;
 }
+
+
 
 .shoe-list p {
     font-weight: bold;

@@ -76,7 +76,7 @@ class MyNavbar extends Component {
                             <a href="/tatca-sanpham" className='nav-item nav-item4'>Tất Cả</a>
                         </div>
                         <div className='cart-div'>
-                            <a href="/cart">
+                            <a href="/">
                                 <FontAwesomeIcon icon={faCartShopping} className='font-awe' />
                             </a>
                         </div>

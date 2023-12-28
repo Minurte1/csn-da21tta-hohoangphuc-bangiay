@@ -202,7 +202,7 @@ const MuaHang = () => {
 
     return (
         <>
-            <div className='div-logomuahang'>  <a href="/some-valid-link" id='logophucshoe' >PhucShoe</a></div>
+            <div className='div-logomuahang'>  <a href="/" id='logophucshoe' >PhucShoe</a></div>
 
             <div className="muahang-container">
 

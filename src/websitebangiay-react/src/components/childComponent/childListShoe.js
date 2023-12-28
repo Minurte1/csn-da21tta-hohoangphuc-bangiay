@@ -37,7 +37,7 @@ export const ShoeList = ({ shoes }) => {
 
     return (
         <div className="shoe-list">
-            <h2 className='tieude'>Sản Phẩm Mới Nhất</h2>
+            <h2 className='tieude'>Các Sản Phẩm Giày</h2>
             <hr></hr>
             <ul>
                 {firstTenShoes.map((shoe) => renderShoeItem(shoe, navigate))}

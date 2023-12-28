@@ -20,6 +20,7 @@ class HomePage extends React.Component {
                 <CarouselHomepage />
                 < ImfoHomepage></ImfoHomepage>
                 < ListShoe></ListShoe>
+
                 <ListShoeSeal></ListShoeSeal>
                 <Footer></Footer>
 
