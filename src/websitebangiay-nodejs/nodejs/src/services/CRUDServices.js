@@ -10,8 +10,8 @@ const getAllHang = async () => {
     return results;
 }
 const getUpdateSanPhamID = async (MASP, tenSanpham, TENHANG, GIA, MOTA, MALOAI, SIZE, SOLUONG, image) => {
-    console.log('hinhne2', image)
-    console.log('teensp', tenSanpham)
+    // console.log('hinhne2', image)
+    // console.log('teensp', tenSanpham)
     let [results, fields] = await (await connection).query(
         `UPDATE SANPHAM 
          SET TENSANPHAM = ?, TENHANG = ?, GIA = ?, description = ?, MALOAI = ?, GIATRI = ?, SOLUONG = ?, THONGTINSANPHAM = ? 
@@ -63,9 +63,22 @@ const getAllLoaiSP = async () => {
 //     return results;
 // }
 
+// const getDonHang = async (req, res) => {
+//     let [results, fields] = await (await connection).execute('select * from DONHANG order by NGAYDONHANG DESC ')
+//     return results;
+// }
+
 const getDonHang = async (req, res) => {
-    let [results, fields] = await (await connection).execute('select * from DONHANG order by NGAYDONHANG DESC ')
-    return results;
+    try {
+        let [results, fields] = await (await connection).execute(
+            'SELECT * FROM DONHANG WHERE TRANGTHAI <> "Đã Giao Thành Công" ORDER BY NGAYDONHANG DESC'
+        );
+
+        return results;
+    } catch (error) {
+        console.error("Lỗi khi lấy danh sách đơn hàng chưa giao:", error);
+        throw error;
+    }
 }
 
 
