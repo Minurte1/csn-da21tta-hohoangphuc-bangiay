@@ -2,15 +2,17 @@
 
 Đề tài: xây dựng website bán giày <br>
 Giáo viên hướng dẫn: Võ Thành C<br>
-sinh viên thực hiện: Nguyễn Tín Thành - 110121104 - DA21TTA<br>
-email: tinthanhtv2014@gmail.com<br>
-dienthoai: 0395890398<br>
+Sinh viên thực hiện: Hồ Hoàng Phúc - 110121242 - DA21TTA<br>
+Email: hohoangphucjob@gmail.com<br>
+Điện thoại: 0327434821<br>
 
 ### Nội dung đề tài:
 
 - **Mục tiêu:**
-  - Xây dựng website bán quần áo với các chức năng quản lý sản phẩm và thống kê cho quản trị viên.
+  - Xây dựng website bán giày với các chức năng quản lý sản phẩm và thống kê cho quản trị viên.
   - Cung cấp khả năng tra cứu thông tin sản phẩm cho người dùng.
+  - Chức năng tìm kiếm sản phẩm, giao diện dễ nhìn thân thiện với người mua hàng.
+  - Chức năng mua hàng lấy thông tin của khách hàng
 
 - **Chức năng cho quản trị viên:**
   - Quản lý sản phẩm: Thêm, sửa, xóa và tìm kiếm sản phẩm.
@@ -22,7 +24,7 @@ dienthoai: 0395890398<br>
 ### Phương pháp thực hiện:
 
 1. **Tìm kiếm và Nghiên cứu:**
-   - Tìm hiểu thông tin liên quan đến website bán quần áo.
+   - Tìm hiểu thông tin liên quan đến website bán giày.
    - Nghiên cứu tài liệu để xác định yêu cầu bài toán.
 
 2. **Phân tích và Thiết kế:**
@@ -41,36 +43,33 @@ dienthoai: 0395890398<br>
 
 | Tuần | Thời gian | Nội dung công việc | Người thực hiện |
 |------|-----------|--------------------|-----------------|
-| 1    | 06/11-12/11/2023 | - Hoàn thành đề cương chi tiết <br> - Tìm hiểu nghiệp vụ <br> - Phân tích thiết kế thành phần dữ liệu, xử lý | Nguyễn Tín Thành |
-| 2    | 20/11-26/11/2023 | - Thiết kế cơ sở dữ liệu <br> - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Nguyễn Tín Thành  |
-| 3    | 04/12-10/12/2023 | - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Nguyễn Tín Thành  |
-| 4    | 18/12-24/12/2023 | - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Nguyễn Tín Thành  |
-| Kết thúc | 25/12-31/12/2023 | - Hoàn chỉnh website <br> - Hoàn chỉnh quyển báo cáo <br> - Nộp quyển báo cáo, website | Nguyễn Tín Thành  |
+| 1    | 06/11-12/11/2023 | - Hoàn thành đề cương chi tiết <br> - Tìm hiểu nghiệp vụ <br> - Phân tích thiết kế thành phần dữ liệu, xử lý | Hồ Hoàng Phúc |
+| 2    | 20/11-26/11/2023 | - Thiết kế cơ sở dữ liệu <br> - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Hồ Hoàng Phúc  |
+| 3    | 04/12-10/12/2023 | - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Hồ Hoàng Phúc  |
+| 4    | 18/12-24/12/2023 | - Thiết kế giao diện <br> - Lập trình <br> - Viết báo cáo đồ án | Hồ Hoàng Phúc  |
+| Kết thúc | 25/12-31/12/2023 | - Hoàn chỉnh website <br> - Hoàn chỉnh quyển báo cáo <br> - Nộp quyển báo cáo, website | Hồ Hoàng Phúc  |
 
 
 ## Hướng dẫn cài đặt dự án
-Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
+Hướng dẫn cài đặt dự án bào gồm máy chủ Node.js và React
 
 ## Yêu Cầu
 
-- Xampp
-- Node.js
+- Dbeaver
+- Nodejs Express
 - npm
+- Reactjs
 
 ## Cài Đặt
 
 1. **Clone Repository:**
    ```bash
-   git clone https://github.com/tinthanhtv2014/csn-da21tta-nguyentinthanh-banquanao-nodejs.git
+   git clone https://github.com/Minurte1/csn-da21tta-hohoangphuc-bangiay-Javascript
 
 
 2. **Cài Đặt Dependencies:**
 
-   - Chuột phải vào thư mục src_nodejs/AdminPage chọn Open in integrated Terminal
-   ```bash
-   npm install
-   ```
-   - Chuột phải vào thư mục src_nodejs/UserPage/my-app chọn Open in integrated Terminal
+   - Chuột phải vào thư mục csn-da21tta-hohoangphuc-bangiay chọn Open in integrated Terminal
     ```bash
    npm install
    ```
@@ -81,9 +80,8 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ node.js và React
 
 6. **Chạy Ứng Dụng:**
 
-   - Import file src/quanlysanpham.sql vào Xampp
    - Mở visual studio code Open dự án
-   - Chuột phải vào thư mục src_nodejs/AdminPage chọn Open in integrated Terminal
+   - Chuột phải vào thư mục csn-da21tta-hohoangphuc-bangiay chọn Open in integrated Terminal
    ```bash
    npm run start
    ```
@@ -115,8 +113,8 @@ Nếu bạn có bất kỳ câu hỏi hoặc muốn liên hệ với tôi về d
 
 - **Trường Đại học:** Đại học Trà Vinh
 - **Lớp:** DA21TTA
-- **Tên:** Nguyễn Tín Thành
-- **Email:** [Tinthanhtv2014@gmail.com](mailto:Tinthanhtv2014@Gmail.com)
+- **Tên:** Hồ Hoàng Phúc
+- **Email:** hohoangphucjob@gmail.com
 
 Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đồng. Đừng ngần ngại liên hệ nếu bạn có bất kỳ ý kiến đóng góp hoặc câu hỏi nào liên quan đến dự án.
 
