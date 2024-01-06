@@ -81,7 +81,7 @@ Hướng dẫn cài đặt dự án bào gồm máy chủ Node.js và React
 6. **Chạy Ứng Dụng:**
 
    - Mở visual studio code Open dự án
-   - Chuột phải vào thư mục csn-da21tta-hohoangphuc-bangiay chọn Open in integrated Terminal
+   - Chuột phải vào tệp package.json chọn Open in integrated Terminal
    ```bash
    npm run start
    ```
