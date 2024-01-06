@@ -117,7 +117,7 @@ Nếu bạn có bất kỳ câu hỏi hoặc muốn liên hệ với tôi về d
 - **Email:** hohoangphucjob@gmail.com
 
 Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đồng. Đừng ngần ngại liên hệ nếu bạn có bất kỳ ý kiến đóng góp hoặc câu hỏi nào liên quan đến dự án.
-
+#Kế hoạch thực hiện
  Ngày 12.11.2023 
 
 - Xây dựng cây thư mục theo mô hình mvc 
@@ -127,7 +127,7 @@ Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đ�
 <<<<<<< HEAD
 
 =======
->>>>>>> f34ac7a21b635851aacb3cae151aff7c0697803b
+
  Ngày 14.11.2023
 - Thiết kế giao diện website 
 - Điều chỉnh lại Navbar
@@ -137,7 +137,7 @@ Tôi rất mong nhận được phản hồi và sự hỗ trợ từ cộng đ�
 - Tạo nội dung sản phẩm
 =======
 - Tạo nội dung sản phẩm
->>>>>>> f34ac7a21b635851aacb3cae151aff7c0697803b
+
 
  Ngày 15.11.2023
 - Thiết kế giao diện website
