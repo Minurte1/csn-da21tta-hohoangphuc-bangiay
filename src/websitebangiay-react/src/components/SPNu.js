@@ -47,9 +47,8 @@ function ListSpNu() {
         fetchData();
     }, []);
 
-
     // console.log('checkdatalistSHOE', data);
-
+    console.log('hello');
     return (
         <div className="App">
             <ChildSPNu shoes={data} hang={hang} />
