@@ -168,26 +168,33 @@ const MuaHang = () => {
         console.log(giay.MASP)
         setOrderTime(currentTime);
 
-        if (!customerInfo.name || !customerInfo.address || !customerInfo.phoneNumber || customerInfo.phoneNumber.length !== 10) {
-            // alert('Vui lòng nhập đầy đủ thông tin');
-            toast.error("Vui lòng nhập đầy đủ thông tin!!!");
+        const isValidPhoneNumber = /^0\d{9}$/.test(customerInfo.phoneNumber);
+        if (!isValidPhoneNumber) {
+            toast.error('Số điện thoại không hợp lệ !!!');
 
-        }
-        else {
-            if (soLuong == 0) {
-                console.log(soLuong)
-                toast.error("Số lượng đã hết huhu!!!");
-            } else {
-                // Call the printSelectedValues function to log the selected values
-                console.log("currentTime after setOrderTime:", currentTime);
-                // Additional logic to send customerInfo to the server or perform other actions
-                toast.success('Cảm ơn bạn đã ủng hộ chúng mình')
-                sendDataToBackend();
-                // Thông báo đặt hàng thành công
-                // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+        } else {
+            if (!customerInfo.name || !customerInfo.address || !customerInfo.phoneNumber || customerInfo.phoneNumber.length !== 10) {
+                // alert('Vui lòng nhập đầy đủ thông tin');
+                toast.error("Vui lòng nhập đầy đủ thông tin!!!");
+
             }
+            else {
+                if (soLuong == 0) {
+                    console.log(soLuong)
+                    toast.error("Số lượng đã hết huhu!!!");
+                } else {
+                    // Call the printSelectedValues function to log the selected values
+                    console.log("currentTime after setOrderTime:", currentTime);
+                    // Additional logic to send customerInfo to the server or perform other actions
+                    toast.success('Cảm ơn bạn đã ủng hộ chúng mình')
+                    sendDataToBackend();
+                    // Thông báo đặt hàng thành công
+                    // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+                }
 
+            }
         }
+
 
     };
 

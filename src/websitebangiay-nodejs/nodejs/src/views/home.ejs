@@ -136,8 +136,9 @@
                             <%= listSanpham.TENHANG %>
                         </td>
                         <td>
-                            <%= listSanpham.GIA %>
+                            <%= parseFloat(listSanpham.GIA).toFixed(0).toLocaleString() %> đ
                         </td>
+
 
                         <td>
                             <%= listSanpham.MALOAI %>
@@ -174,6 +175,7 @@
             </table>
         </div>
     </div>
+
     <style>
         .active {
             background-color: black;
