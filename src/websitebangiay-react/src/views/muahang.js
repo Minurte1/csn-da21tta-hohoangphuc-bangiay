@@ -15,6 +15,7 @@ const MuaHang = () => {
     const image = state?.image;
     // console.log(giay.image)
     // console.log(state);
+    // console.log(state.soLuong)
     const [customerInfo, setCustomerInfo] = useState({
         name: '',
         phoneNumber: '',
@@ -170,15 +171,24 @@ const MuaHang = () => {
         if (!customerInfo.name || !customerInfo.address || !customerInfo.phoneNumber || customerInfo.phoneNumber.length !== 10) {
             // alert('Vui lòng nhập đầy đủ thông tin');
             toast.error("Vui lòng nhập đầy đủ thông tin!!!");
-        } else {
-            // Call the printSelectedValues function to log the selected values
-            console.log("currentTime after setOrderTime:", currentTime);
-            // Additional logic to send customerInfo to the server or perform other actions
-            toast.success('Cảm ơn bạn đã ủng hộ chúng mình')
-            sendDataToBackend();
-            // Thông báo đặt hàng thành công
-            // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+
         }
+        else {
+            if (soLuong == 0) {
+                console.log(soLuong)
+                toast.error("Số lượng đã hết huhu!!!");
+            } else {
+                // Call the printSelectedValues function to log the selected values
+                console.log("currentTime after setOrderTime:", currentTime);
+                // Additional logic to send customerInfo to the server or perform other actions
+                toast.success('Cảm ơn bạn đã ủng hộ chúng mình')
+                sendDataToBackend();
+                // Thông báo đặt hàng thành công
+                // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
+            }
+
+        }
+
     };
 
 

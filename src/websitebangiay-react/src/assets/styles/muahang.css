@@ -159,7 +159,7 @@
 
 .sanpham-name {
     margin-left: 10%;
-    font-size: 18px;
+    font-size: 13px;
     color: #565252;
 }
 
@@ -171,9 +171,10 @@
 }
 
 .sanpham-price {
-    margin-left: 10%;
+    margin-left: 7%;
     font-size: 18px;
     color: #000000;
+    font-weight: bold;
 }
 
 .sanpham-price1 {

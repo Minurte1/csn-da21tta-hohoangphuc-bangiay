@@ -43,8 +43,6 @@ configViewEngine(app);
 app.use(webRouter);
 
 
-
-
 //express default
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)

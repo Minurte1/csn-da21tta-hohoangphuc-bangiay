@@ -7,7 +7,7 @@ import ListShoeSeal from "../components/listShoeSeal"
 import Footer from "../components/foolterHomepage";
 import AppCer from "../api/api";
 
-
+import ListShoeSealNam from "../components/listShoeSeal copy"
 class HomePage extends React.Component {
 
 
@@ -20,7 +20,7 @@ class HomePage extends React.Component {
                 <CarouselHomepage />
                 < ImfoHomepage></ImfoHomepage>
                 < ListShoe></ListShoe>
-
+                <ListShoeSealNam></ListShoeSealNam>
                 <ListShoeSeal></ListShoeSeal>
                 <Footer></Footer>
 
