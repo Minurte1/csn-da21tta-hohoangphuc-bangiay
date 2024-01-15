@@ -17,6 +17,8 @@ import TuyenDungPage from './views/TuyenDung';
 import AllSP from '../src/views/TatCaSanPham'
 import SPNu from './views/SpNu';
 import SPNam from './views/SpNam'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -41,9 +43,20 @@ root.render(
         <Route path="/tatca-sanpham" element={<><AllSP></AllSP></>} />
         <Route path="/nu-sanpham" element={<><SPNu></SPNu></>} />
         <Route path="/nam-sanpham" element={<><SPNam></SPNam></>} />
+
       </Routes>
     </Router>
-
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
   </React.StrictMode>
 );
 

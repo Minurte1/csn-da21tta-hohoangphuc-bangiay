@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/styles/thongtinchitietgiay.css';
-
+import { toast } from 'react-toastify';
 const ThongTinChiTietGiay = () => {
     const { state } = useLocation();
     const [counterValue, setCounterValue] = useState(1);
@@ -22,8 +22,8 @@ const ThongTinChiTietGiay = () => {
 
     let handleClickMuaHang = (event) => {
         if (selectedSize == null) {
-            alert('Vui lòng chọn Size giày');
-
+            // alert('Vui lòng chọn Size giày');
+            toast.error('Vui lòng chọn Size giày')
             event.preventDefault(); // Ngăn chặn sự kiện navigation mặc định
         } else {
 
@@ -39,7 +39,8 @@ const ThongTinChiTietGiay = () => {
 
     const increment = () => {
         if (counterValue + 1 > state.SOLUONG) {
-            alert('Số lượng mà bạn đặt mua đã vượt quá số lượng trong kho hàng hiện có, rất xin lỗi vì sự bất tiện này :(');
+            toast.error('Số lượng mà bạn đặt mua đã vượt quá số lượng trong kho hàng hiện có, rất xin lỗi vì sự bất tiện này')
+            // alert('Số lượng mà bạn đặt mua đã vượt quá số lượng trong kho hàng hiện có, rất xin lỗi vì sự bất tiện này :(');
             setCounterValue(state.SOLUONG);
         } else {
             setCounterValue(counterValue + 1);

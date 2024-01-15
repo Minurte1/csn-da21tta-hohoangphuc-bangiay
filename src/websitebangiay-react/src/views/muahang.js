@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import axios from 'axios';
 import '../assets/styles/muahang.css'; // Import tệp CSS
+import { toast } from 'react-toastify';
 const host = "https://provinces.open-api.vn/api/";
 
 const MuaHang = () => {
@@ -167,12 +168,13 @@ const MuaHang = () => {
         setOrderTime(currentTime);
 
         if (!customerInfo.name || !customerInfo.address || !customerInfo.phoneNumber || customerInfo.phoneNumber.length !== 10) {
-            alert('Vui lòng nhập đầy đủ thông tin');
+            // alert('Vui lòng nhập đầy đủ thông tin');
+            toast.error("Vui lòng nhập đầy đủ thông tin!!!");
         } else {
             // Call the printSelectedValues function to log the selected values
             console.log("currentTime after setOrderTime:", currentTime);
             // Additional logic to send customerInfo to the server or perform other actions
-            alert('Cảm ơn bạn đã ủng hộ shop chúng mình');
+            toast.success('Cảm ơn bạn đã ủng hộ chúng mình')
             sendDataToBackend();
             // Thông báo đặt hàng thành công
             // alert('Cảm ơn bạn đã đặt hàng!' + customerInfo.name + "  " + customerInfo.phoneNumber + "  " + customerInfo.province + "  " + customerInfo.district + "  " + customerInfo.ward + "  " + customerInfo.note);
