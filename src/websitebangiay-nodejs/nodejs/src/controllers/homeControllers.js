@@ -69,12 +69,18 @@ const getAppcetLoaiSP = async (req, res) => {
     // }
 }
 const getDeleteLoaiSP = async (req, res) => {
-    var productID = req.params.id;
-    // console.log('>> productID = ', productID);
+    try {
+        var productID = req.params.id;
+        // console.log('>> productID = ', productID);
 
-    const [results, fields] = await (await connection).query('DELETE FROM LOAI WHERE MALOAI = ?', [productID]);
-    const AllLSPP = await getAllLoaiSP();
-    res.render('createLoaiSP.ejs', { AllLoaiSP: AllLSPP })
+        const [results, fields] = await (await connection).query('DELETE FROM LOAI WHERE MALOAI = ?', [productID]);
+        const AllLSPP = await getAllLoaiSP();
+        res.render('createLoaiSP.ejs', { AllLoaiSP: AllLSPP });
+    } catch (error) {
+        console.error('Error in getDeleteLoaiSP:', error);
+        // Handle the error appropriately, you might want to send a response to the client or log the error.
+        res.status(500).send('Rất Tiếc Không Thể Xóa Loại Giày Này');
+    }
 }
 
 
@@ -190,17 +196,43 @@ const postCreateSanpham = async (req, res) => {
 
 
 //.....................HANG SP...............................................
+// const getCreateHangSP = async (req, res) => {
+//     var tenHangSP = req.body.tenHangSP;
+//     if (tenHangSP === "") {
+//         const AllHangSPP = await getAllHang()
+//         res.render('createHangSP.ejs', { AllHangSP: AllHangSPP })
+//     }
+//     let results = await getAllHang()
+
+//     return res.render('createHangSP', { AllHangSP: results })
+
+// }
 const getCreateHangSP = async (req, res) => {
-    var tenHangSP = req.body.tenHangSP;
-    if (tenHangSP === "") {
-        const AllHangSPP = await getAllHang()
-        res.render('createHangSP.ejs', { AllHangSP: AllHangSPP })
+    try {
+        var tenHangSP = req.body.tenHangSP;
+
+        if (tenHangSP === "") {
+            // const AllHangSPP = await getAllHang()
+            // res.render('createHangSP.ejs', { AllHangSP: AllHangSPP })
+            res.send('Lỗi không nhận được dữ liệu ');
+            return;
+        }
+
+        // Add the value to the database (modify this part based on your database interaction logic)
+        // For example, you might have a function like addHangToDB(tenHangSP)
+        // await addHangToDB(tenHangSP);
+
+        // Fetch all values from the database (modify this part based on your database interaction logic)
+        let results = await getAllHang();
+
+        return res.render('createHangSP.ejs', { AllHangSP: results });
+    } catch (error) {
+        console.error('Error in getCreateHangSP:', error);
+        // Handle the error appropriately, you might want to send a response to the client or log the error.
+        res.status(500).send('Rất tiếc :(');
     }
-    let results = await getAllHang()
-
-    return res.render('createHangSP', { AllHangSP: results })
-
 }
+
 const getAppcetHangSP = async (req, res) => {
     var tenHangSP = req.body.tenHangSP;
     if (tenHangSP === undefined) {
@@ -228,13 +260,19 @@ const getAppcetHangSP = async (req, res) => {
 };
 
 const getDeleteHangSP = async (req, res) => {
-    var productID = req.params.id;
-    // console.log('>> productID = ', productID);
+    try {
+        var productID = req.params.id;
+        // console.log('>> productID = ', productID);
 
-    const [results, fields] = await (await connection).query('DELETE FROM HANG WHERE TENHANG = ?', [productID]);
-    const AllHangSPP = await getAllHang()
-    res.render('createHangSP.ejs', { AllHangSP: AllHangSPP })
-    // res.redirect('/')
+        const [results, fields] = await (await connection).query('DELETE FROM HANG WHERE TENHANG = ?', [productID]);
+        const AllHangSPP = await getAllHang();
+        res.render('createHangSP.ejs', { AllHangSP: AllHangSPP });
+        // res.redirect('/');
+    } catch (error) {
+        console.error('Error in getDeleteHangSP:', error);
+        // Handle the error appropriately, you might want to send a response to the client or log the error.
+        res.status(500).send('Rất Tiếc Không Thể Xóa Hãng Này');
+    }
 }
 
 
