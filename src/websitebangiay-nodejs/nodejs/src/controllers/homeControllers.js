@@ -196,17 +196,7 @@ const postCreateSanpham = async (req, res) => {
 
 
 //.....................HANG SP...............................................
-// const getCreateHangSP = async (req, res) => {
-//     var tenHangSP = req.body.tenHangSP;
-//     if (tenHangSP === "") {
-//         const AllHangSPP = await getAllHang()
-//         res.render('createHangSP.ejs', { AllHangSP: AllHangSPP })
-//     }
-//     let results = await getAllHang()
 
-//     return res.render('createHangSP', { AllHangSP: results })
-
-// }
 const getCreateHangSP = async (req, res) => {
     try {
         var tenHangSP = req.body.tenHangSP;
@@ -217,12 +207,6 @@ const getCreateHangSP = async (req, res) => {
             res.send('Lỗi không nhận được dữ liệu ');
             return;
         }
-
-        // Add the value to the database (modify this part based on your database interaction logic)
-        // For example, you might have a function like addHangToDB(tenHangSP)
-        // await addHangToDB(tenHangSP);
-
-        // Fetch all values from the database (modify this part based on your database interaction logic)
         let results = await getAllHang();
 
         return res.render('createHangSP.ejs', { AllHangSP: results });
